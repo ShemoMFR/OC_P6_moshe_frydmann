@@ -1,0 +1,32 @@
+
+.main-container {
+    padding: 40px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul {
+    display: flex;
+}
+
+li {
+    list-style-type: none;
+    margin-left: 10px;
+    padding: 5px;
+    border: 1px solid grey;
+    border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(117, 13, 13);
+}
+
+.text-header {
+    font-size: 2rem;
+    color: rgb(117, 13, 13);
+    margin-left: 20px;
+}
