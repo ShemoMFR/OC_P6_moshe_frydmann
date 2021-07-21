@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap');
 
+body {
+    margin: 0;
+    padding: 0;
+}
 .main-container {
     padding: 40px;
 }
@@ -6,10 +11,12 @@
 header {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 nav ul {
     display: flex;
+    flex-wrap: wrap;
 }
 
 li {
@@ -29,4 +36,32 @@ a {
     font-size: 2rem;
     color: rgb(117, 13, 13);
     margin-left: 20px;
+}
+
+.link-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    visibility: hidden;
+}
+.link {
+    text-align: center;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 182px;
+}
+
+.main-section {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 10px;
+}
+
+.card {
+    width: 100%;
+    border: 1px solid red;
 }
