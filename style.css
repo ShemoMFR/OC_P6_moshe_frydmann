@@ -5,7 +5,11 @@ body {
     padding: 0;
 }
 .main-container {
-    padding: 40px;
+    padding: 120px;
+}
+
+#main-section {
+    margin-top: 80px;
 }
 
 header {
@@ -14,6 +18,10 @@ header {
     width: 100%;
 }
 
+/* .logo-container {
+    margin-left: 5%;
+} */
+
 nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -21,10 +29,6 @@ nav ul {
 
 li {
     list-style-type: none;
-    margin-left: 10px;
-    padding: 5px;
-    border: 1px solid grey;
-    border-radius: 20px;
 }
 
 a {
@@ -33,9 +37,12 @@ a {
 }
 
 .text-header {
-    font-size: 2rem;
-    color: rgb(117, 13, 13);
-    margin-left: 20px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+    color: #911C1C;
 }
 
 .link-container {
@@ -57,11 +64,86 @@ a {
 
 #main-section {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-gap: 10px;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 5%;
 }
 
 .card {
     width: 100%;
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.card-name {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 47px;
+    text-align: center;
+    color: #D3573C;
+    margin-bottom: 10px;
+}
+
+.card-city {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    text-align: center;
+    color: #901C1C;
+    margin-bottom: 5px;
+}
+
+.card-citation {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+.card-tjm {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    line-height: 12px;    
+    text-align: center;
+    color: #757575;
+    margin-bottom: 5px;
+}
+
+
+.card-tags {
+    display: flex;
+}
+
+.tag {
+    margin-left: 10px;
+    padding: 2px;
+    border-radius: 20px;
+    border: 0.5px solid #C4C4C4;
+    box-sizing: border-box;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: #911C1C;
+    margin-bottom: 5px;
 }
