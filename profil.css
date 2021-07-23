@@ -17,6 +17,7 @@ body {
     margin-top: 40px;
     background: #FAFAFA;
     border-radius: 5px;
+    padding: 40px;
 }
 
 .body-section {
@@ -37,6 +38,59 @@ body {
     font-weight: bold;
     font-size: 18px;
     line-height: 23px;
-
     color: #000000;
+}
+
+#nom-profil {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 83px;
+    color: #D3573C;
+    margin-bottom: 20px;
+}
+
+#ville-profil {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 31px;
+    color: #901C1C;
+    margin-bottom: 20px;
+}
+
+#citation-profil {
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #525252;    
+}
+
+#tag-profil {
+    margin-top: 10px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 23px;
+    color: #911C1C;
+}
+
+.tag {
+    margin-right: 10px;
+    border-radius: 20px;
+    border: 0.5px solid #C4C4C4;
+    box-sizing: border-box;
+    text-align: center;
+    color: #911C1C;
+    margin-bottom: 5px;
+    padding: 0px 5px;
+}
+
+a {
+    text-decoration: none;
 }

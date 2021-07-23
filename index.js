@@ -4,8 +4,6 @@ function getData() {
     fetch("photographes.json")
     .then(response => response.json())
     .then(data => data.photographers.map(photographe => {
-
-        console.log(photographe);
         const newDiv = document.createElement('div');
         newDiv.className = "card";
         mainSection.appendChild(newDiv);
@@ -23,6 +21,7 @@ function getData() {
 
         divPhoto.addEventListener("click", function() {
             window.open("profil.html");
+            localStorage.setItem("profil", JSON.stringify(photographe));
         })
 
                 /*** Création div name ***/
