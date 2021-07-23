@@ -5,7 +5,9 @@ body {
     padding: 0;
 }
 .main-container {
-    padding: 120px;
+    padding: 40px 140px;
+    max-width: 1400px;
+    margin: auto;
 }
 
 #main-section {
@@ -33,7 +35,7 @@ li {
 
 a {
     text-decoration: none;
-    color: rgb(117, 13, 13);
+    
 }
 
 .text-header {
@@ -43,6 +45,7 @@ a {
     font-size: 36px;
     line-height: 47px;
     color: #911C1C;
+    margin-top: 0;
 }
 
 .link-container {
@@ -66,13 +69,15 @@ a {
     display: grid;
     grid-template-columns: 30% 30% 30%;
     grid-gap: 5%;
+    margin-left: -100px;
+    margin-right: -100px;
 }
 
 .card {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -81,7 +86,8 @@ a {
     height: 200px;
     border-radius: 50%;
     margin-bottom: 10px;
-}
+/*     cursor: pointer;
+ */}
 
 .card-name {
     font-family: DM Sans;
@@ -127,7 +133,6 @@ a {
     margin-bottom: 5px;
 }
 
-
 .card-tags {
     display: flex;
 }
@@ -147,3 +152,5 @@ a {
     color: #911C1C;
     margin-bottom: 5px;
 }
+
+
