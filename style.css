@@ -35,7 +35,6 @@ li {
 
 a {
     text-decoration: none;
-    
 }
 
 .text-header {
@@ -86,8 +85,8 @@ a {
     height: 200px;
     border-radius: 50%;
     margin-bottom: 10px;
-/*     cursor: pointer;
- */}
+    object-fit: cover;
+}
 
 .card-name {
     font-family: DM Sans;
@@ -139,18 +138,19 @@ a {
 
 .tag {
     margin-left: 10px;
-    padding: 2px;
+    margin-bottom: 5px;
     border-radius: 20px;
     border: 0.5px solid #C4C4C4;
     box-sizing: border-box;
     font-family: DM Sans;
     font-style: normal;
     font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 18px;
+    line-height: 23px;
     text-align: center;
     color: #911C1C;
-    margin-bottom: 5px;
+    padding: 0px 10px;
+
 }
 
 

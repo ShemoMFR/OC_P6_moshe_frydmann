@@ -10,19 +10,20 @@ function getData() {
 
                 /*** Création img ***/
 
+        const aPhoto = document.createElement('a');
+        aPhoto.href = `profil.html?id=${photographe.id}`;
         const divPhoto = document.createElement('img');
         divPhoto.src = "./FishEye_Photos/Photos/Photographers/" + photographe.portrait;
         divPhoto.alt = "";
-        divPhoto.innerHTML = "<a href=./profil.html></a>";
         divPhoto.className = "card-photo";
-        newDiv.appendChild(divPhoto);
+        aPhoto.appendChild(divPhoto);
+        newDiv.appendChild(aPhoto);
 
                 /*** Evenement au click img ***/
 
-        divPhoto.addEventListener("click", function() {
-            window.open("profil.html");
-            localStorage.setItem("profil", JSON.stringify(photographe));
-        })
+      /*   divPhoto.addEventListener("click", function() {
+            window.open(`profil.html?${photographe.id}`);
+        }) */
 
                 /*** Création div name ***/
 
