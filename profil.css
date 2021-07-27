@@ -6,7 +6,7 @@ body {
 }
 .main-container {
     padding: 40px 140px;
-    max-width: 1400px;
+    max-width: 1600px;
     margin: auto;
 }
 
@@ -18,7 +18,7 @@ body {
     margin-top: 40px;
     background: #FAFAFA;
     border-radius: 5px;
-    padding: 40px;
+    padding-top: 40px;
 }
 
 .body-section {
@@ -42,6 +42,10 @@ body {
     font-size: 18px;
     line-height: 23px;
     color: #000000;
+}
+
+.infos-profil {
+    padding-left: 40px;
 }
 
 #nom-profil {
@@ -173,5 +177,39 @@ a {
     width: 20px;
     height: 20px;
     margin-left: 5px;
+}
+
+.profil-tjm-likes {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    width: 376px;
+    height: 89px;
+    right: 10%;
+    bottom: 0;
+    background: #DB8876;
+    border-radius: 5px;
+}
+
+.total-likes {
+    margin-left: 20px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    text-align: right;
+    color: #000000;
+}
+
+.tjm-profil {
+    margin-left: 50px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    text-align: center;
+    color: #000000;
 }
 

@@ -7,6 +7,8 @@ const photoProfil = document.getElementById('photo-top-section');
 const bodySection = document.getElementsByClassName('body-section')[0];
 const urlParams = new URLSearchParams(window.location.search);
 const idProfil = urlParams.get("id");
+let tjm = document.getElementsByClassName('tjm-profil')[0];
+let TotalLikes = document.getElementsByClassName('total-likes')[0];
 let mediasProfil;
 let profilPage;
 
@@ -18,6 +20,8 @@ function setInfosProfil() {
         profilPage = data.photographers.filter(
         photographe => photographe.id == idProfil);
         profilPage = profilPage[0];
+
+        tjm.textContent = profilPage.price + "€ / jour";
 
         titlePage.textContent = "Profil de " + profilPage.name;
         nomProfil.textContent = profilPage.name;
@@ -44,8 +48,11 @@ function setMediasProfil() {
         mediasProfil = data.media.filter(
         media => media.photographerId == idProfil);
 
-        console.log(mediasProfil)
+        let TLikes = 0;
+
         mediasProfil.map(media => {
+            TLikes += parseInt(media.likes);
+
             if (media.image) {
                 /** Creation container */
                 const container = document.createElement('div');
@@ -78,7 +85,7 @@ function setMediasProfil() {
 
                 const newHeart = document.createElement('img');
                 newHeart.className = "heart";
-                newHeart.src = "./FishEye_Photos/png/heart.png"
+                newHeart.src = "./FishEye_Photos/png/heart.png";
                 containerLikes.appendChild(newLikes);
                 containerLikes.appendChild(newHeart);
                 newContainerInfos.appendChild(containerLikes);
@@ -132,11 +139,17 @@ function setMediasProfil() {
             }
                 
         })
+
+        TotalLikes.textContent = `${TLikes}`;
+
     });
 };
 
+
 setInfosProfil();
 setMediasProfil();
+
+console.log(totalLikes)
 
 
 
