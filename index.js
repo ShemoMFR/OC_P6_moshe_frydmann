@@ -19,12 +19,6 @@ function getData() {
         aPhoto.appendChild(divPhoto);
         newDiv.appendChild(aPhoto);
 
-                /*** Evenement au click img ***/
-
-      /*   divPhoto.addEventListener("click", function() {
-            window.open(`profil.html?${photographe.id}`);
-        }) */
-
                 /*** Création div name ***/
 
         const divName = document.createElement('div');
