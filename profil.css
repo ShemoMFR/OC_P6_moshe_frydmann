@@ -227,10 +227,10 @@ a {
     background: #911C1C;
     border-radius: 5px;
     margin-left: 40px;
+    cursor: pointer;
 }
 
-.container-title {
-    border-bottom: 1px solid white;
+.container-title1, .container-title2, .container-title3 {
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -248,7 +248,26 @@ a {
     color: #FFFFFF;
 }
 
-#popularite-title3  {
+
+.selector-open {
+    width: 100%;
+    display: none;
+}
+
+.container-title1 {
+    display: flex;
+}
+
+.container-title2, .container-title3 {
+    width: 80%;
+    border-top: 1px solid white;
+}
+
+#fleche {
+    width: 15px;
     margin-left: 20px;
 }
+
+
+
 

@@ -5,8 +5,12 @@ const titlePage = document.getElementById('title-page');
 const tagsProfil = document.getElementById('tag-profil');
 const photoProfil = document.getElementById('photo-top-section');
 const bodySection = document.getElementsByClassName('body-section')[0];
+const selectorPopularite = document.getElementsByClassName('popularite')[0];
+const selectorOpen = document.getElementsByClassName('selector-open')[0];
+const fleche = document.getElementById('fleche');
 const urlParams = new URLSearchParams(window.location.search);
 const idProfil = urlParams.get("id");
+let isOpen = false;
 let tjm = document.getElementsByClassName('tjm-profil')[0];
 let TotalLikes = document.getElementsByClassName('total-likes')[0];
 let mediasProfil;
@@ -151,7 +155,24 @@ function setMediasProfil() {
 setInfosProfil();
 setMediasProfil();
 
-console.log(totalLikes)
+selectorPopularite.addEventListener('click', function() {
 
+    if (isOpen) {
+        isOpen = false;
+    }
+    else {
+        isOpen = true;
+    }
+
+    if (isOpen) {
+        selectorOpen.style.display = 'inline-block';
+        fleche.src = "./FishEye_Photos/svg/fleche-haut.svg"
+    }
+    else {
+        selectorOpen.style.display = 'none';
+        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
+    }
+
+});
 
 
