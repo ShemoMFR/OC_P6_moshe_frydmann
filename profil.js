@@ -54,6 +54,8 @@ function setMediasProfil() {
             TLikes += parseInt(media.likes);
 
             if (media.image) {
+
+                console.log(media.image)
                 /** Creation container */
                 const container = document.createElement('div');
                 bodySection.appendChild(container);
