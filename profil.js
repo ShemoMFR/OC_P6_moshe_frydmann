@@ -5,16 +5,117 @@ const titlePage = document.getElementById('title-page');
 const tagsProfil = document.getElementById('tag-profil');
 const photoProfil = document.getElementById('photo-top-section');
 const bodySection = document.getElementsByClassName('body-section')[0];
-const selectorPopularite = document.getElementsByClassName('popularite')[0];
+const selectorPopularite = document.getElementsByClassName('container-title1')[0];
 const selectorOpen = document.getElementsByClassName('selector-open')[0];
 const fleche = document.getElementById('fleche');
+const selectorDate = document.getElementById('popularite-title2');
+const selectorTitle = document.getElementById('popularite-title3');
 const urlParams = new URLSearchParams(window.location.search);
 const idProfil = urlParams.get("id");
+let media = document.getElementsByClassName('media');
+let titleMedia = document.getElementsByClassName('title-media');
+let likesMedia = document.getElementsByClassName('likes-media');
 let isOpen = false;
 let tjm = document.getElementsByClassName('tjm-profil')[0];
 let TotalLikes = document.getElementsByClassName('total-likes')[0];
 let mediasProfil;
 let profilPage;
+let TLikes = 0;
+
+function createGalery(mediasProfil ) {
+    mediasProfil.map(media => {
+        TLikes += parseInt(media.likes);
+
+        if (media.image) {
+
+            /** Creation container */
+            const container = document.createElement('div');
+            bodySection.appendChild(container);
+
+            /** Creation img */
+
+            const newImg = document.createElement('img');
+            newImg.className = "media";
+            newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
+
+             /** Creation containers */
+
+            const newContainerInfos = document.createElement('div');
+            newContainerInfos.className ="container-media";
+
+            const containerLikes = document.createElement('div');
+            containerLikes.className = "container-likes";
+
+             /** Creation elements titre, likes et coeur */
+
+            const newTitle = document.createElement('div');
+            newTitle.className = "title-media"
+            newTitle.textContent = media.title;
+            newContainerInfos.appendChild(newTitle);
+
+            const newLikes = document.createElement('div');
+            newLikes.className = "likes-media";
+            newLikes.textContent = media.likes;
+
+            const newHeart = document.createElement('img');
+            newHeart.className = "heart";
+            newHeart.src = "./FishEye_Photos/png/heart.png";
+            containerLikes.appendChild(newLikes);
+            containerLikes.appendChild(newHeart);
+            newContainerInfos.appendChild(containerLikes);
+
+            container.appendChild(newImg);
+            container.appendChild(newContainerInfos);
+        }
+
+        if (media.video) {
+             /** Creation container */
+             const container = document.createElement('div');
+             bodySection.appendChild(container);
+
+             /** Creation video */
+
+             const newVideo = document.createElement('video');
+             const newVideoSource = document.createElement('source');
+             newVideo.appendChild(newVideoSource);
+             newVideo.className = "media";
+             newVideoSource.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
+
+             /** Creation containers */
+
+             const newContainerInfos = document.createElement('div');
+             newContainerInfos.className ="container-media";
+
+             const containerLikes = document.createElement('div');
+             containerLikes.className = "container-likes";
+
+             /** Creation elements titre, likes et coeur */
+
+             const newTitle = document.createElement('div');
+             newTitle.className = "title-media"
+             newTitle.textContent = media.title;
+             newContainerInfos.appendChild(newTitle);
+
+             const newLikes = document.createElement('div');
+             newLikes.className = "likes-media";
+             newLikes.textContent = media.likes;
+
+             const newHeart = document.createElement('img');
+             newHeart.className = "heart";
+             newHeart.src = "./FishEye_Photos/png/heart.png"
+             containerLikes.appendChild(newLikes);
+             containerLikes.appendChild(newHeart);
+             newContainerInfos.appendChild(containerLikes);
+
+             container.appendChild(newVideo);
+             container.appendChild(newContainerInfos);
+        };
+
+        localStorage.setItem('nbrLikes', `${TLikes}`);  
+        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;
+      
+    });
+}
 
 function setInfosProfil() {
 
@@ -46,6 +147,8 @@ function setInfosProfil() {
 };
 
 function setMediasProfil() {
+
+    let isSortedByDate = false;
     fetch("photographes.json")
     .then(response => response.json())
     .then(data => { 
@@ -54,103 +157,48 @@ function setMediasProfil() {
 
         let TLikes = 0;
 
-        mediasProfil.map(media => {
-            TLikes += parseInt(media.likes);
+    selectorDate.addEventListener("click", function() {
 
-            if (media.image) {
+        localStorage.setItem('sortedBy', 'date');
+        window.location.reload();
+        selectorOpen.style.display = 'none';
+        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
+    })
 
-                console.log(media.image)
-                /** Creation container */
-                const container = document.createElement('div');
-                bodySection.appendChild(container);
+    selectorTitle.addEventListener("click", function() {
 
-                /** Creation img */
+        localStorage.setItem('sortedBy', 'title');
+        window.location.reload();
+        selectorOpen.style.display = 'none';
+        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
+    })
 
-                const newImg = document.createElement('img');
-                newImg.className = "media";
-                newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
+    if (localStorage.getItem('sortedBy') == 'date') {
+        mediasProfil.sort(function(a, b) {
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return a > b ? -1 : a < b ? 1 : 0;
+        });
 
-                 /** Creation containers */
+        createGalery(mediasProfil);
+    }
 
-                const newContainerInfos = document.createElement('div');
-                newContainerInfos.className ="container-media";
+    else if (localStorage.getItem('sortedBy') == 'title') {
+        mediasProfil.sort( function(b, a) {
+            a = a.title;
+            b = b.title;
+            return a > b ? -1 : a < b ? 1 : 0;
+        });
 
-                const containerLikes = document.createElement('div');
-                containerLikes.className = "container-likes";
+        createGalery(mediasProfil);
+    }
 
-                 /** Creation elements titre, likes et coeur */
+    else {createGalery(mediasProfil);};
 
-                const newTitle = document.createElement('div');
-                newTitle.className = "title-media"
-                newTitle.textContent = media.title;
-                newContainerInfos.appendChild(newTitle);
-
-                const newLikes = document.createElement('div');
-                newLikes.className = "likes-media";
-                newLikes.textContent = media.likes;
-
-                const newHeart = document.createElement('img');
-                newHeart.className = "heart";
-                newHeart.src = "./FishEye_Photos/png/heart.png";
-                containerLikes.appendChild(newLikes);
-                containerLikes.appendChild(newHeart);
-                newContainerInfos.appendChild(containerLikes);
-
-                container.appendChild(newImg);
-                container.appendChild(newContainerInfos);
-
-            }
-
-            if (media.video) {
-                 /** Creation container */
-                 const container = document.createElement('div');
-                 bodySection.appendChild(container);
+    localStorage.clear(); 
  
-                 /** Creation video */
-
-                 const newVideo = document.createElement('video');
-                 const newVideoSource = document.createElement('source');
-                 newVideo.appendChild(newVideoSource);
-                 newVideo.className = "media";
-                 newVideoSource.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
-
-                 /** Creation containers */
-  
-                 const newContainerInfos = document.createElement('div');
-                 newContainerInfos.className ="container-media";
- 
-                 const containerLikes = document.createElement('div');
-                 containerLikes.className = "container-likes";
-
-                 /** Creation elements titre, likes et coeur */
- 
-                 const newTitle = document.createElement('div');
-                 newTitle.className = "title-media"
-                 newTitle.textContent = media.title;
-                 newContainerInfos.appendChild(newTitle);
- 
-                 const newLikes = document.createElement('div');
-                 newLikes.className = "likes-media";
-                 newLikes.textContent = media.likes;
- 
-                 const newHeart = document.createElement('img');
-                 newHeart.className = "heart";
-                 newHeart.src = "./FishEye_Photos/png/heart.png"
-                 containerLikes.appendChild(newLikes);
-                 containerLikes.appendChild(newHeart);
-                 newContainerInfos.appendChild(containerLikes);
- 
-                 container.appendChild(newVideo);
-                 container.appendChild(newContainerInfos);
-            }
-                
-        })
-
-        TotalLikes.textContent = `${TLikes}`;
-
     });
 };
-
 
 setInfosProfil();
 setMediasProfil();
@@ -172,7 +220,6 @@ selectorPopularite.addEventListener('click', function() {
         selectorOpen.style.display = 'none';
         fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
     }
-
 });
 
 
