@@ -91,12 +91,8 @@ function createGalery(mediasProfil ) {
              /** Creation video */
 
              const newVideo = document.createElement('video');
-             const newVideoSource = document.createElement('source');
-             newVideoSource.type = "video/mp4"; 
-             newVideo.appendChild(newVideoSource);
              newVideo.className = "media";
-/*              newVideo.controls = "controls";
- */             newVideo.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
+             newVideo.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
 
              /** Creation containers */
 
@@ -130,7 +126,6 @@ function createGalery(mediasProfil ) {
              newVideo.addEventListener('click', function() {
                 videoModal.style.display = "inline-block";
                 videoModal.style.visibility = "visible";
-                sourceModal.style.visibility = "visible";
                 photoModal.style.display = "none";
                 modal.style.visibility = "visible"; 
                 videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
