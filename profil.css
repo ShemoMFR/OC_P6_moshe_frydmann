@@ -300,6 +300,7 @@ a {
 .chevron-modal {
     width: 100px;
     height: 100px;
+    cursor: pointer;
 }
 
 .photo-modal {

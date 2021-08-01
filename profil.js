@@ -12,8 +12,7 @@ const selectorDate = document.getElementById('popularite-title2');
 const selectorTitle = document.getElementById('popularite-title3');
 const urlParams = new URLSearchParams(window.location.search);
 const idProfil = urlParams.get("id");
-/* let media = document.getElementsByClassName('media');
- */let titleMedia = document.getElementsByClassName('title-media');
+let titleMedia = document.getElementsByClassName('title-media');
 let likesMedia = document.getElementsByClassName('likes-media');
 let isOpen = false;
 let tjm = document.getElementsByClassName('tjm-profil')[0];
@@ -24,24 +23,21 @@ const videoModal = document.getElementsByClassName('video-modal')[0];
 const sourceModal = document.getElementById('source-modal');
 const body = document.getElementsByTagName('body')[0];
 const exitModal = document.getElementsByClassName('exit-modal')[0];
+const chevronLeft = document.getElementById('chevron-left');
+const chevronRight = document.getElementById('chevron-right');
 let mediasProfil;
 let profilPage;
 let TLikes = 0;
+let nextIndex = 0;
+let prevIndex = 0;
 
-function createGalery(mediasProfil ) {
+function createGalery(mediasProfil) {
     mediasProfil.map(media => {
         TLikes += parseInt(media.likes);
 
-
             /** Creation container */
             const container = document.createElement('div');
-            bodySection.appendChild(container);
-
-            /** Creation img */
-
-           /*  const newImg = document.createElement('img');
-            newImg.className = "media";
-            newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`; */
+            bodySection.appendChild(container);  
 
              /** Creation containers */
 
@@ -76,12 +72,19 @@ function createGalery(mediasProfil ) {
             container.appendChild(newImg);
 
             newImg.addEventListener('click', function() {
+
                 photoModal.style.display = "flex";
                 photoModal.style.visibility = "visible";
                 videoModal.style.display = "none";
                 modal.style.visibility = "visible";
                 photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
                 body.style.overflowY = "hidden";
+
+                nextIndex = mediasProfil.indexOf(media) + 1;
+                nextIndex = nextIndex < mediasProfil.length ? nextIndex : mediasProfil.indexOf(media);  
+                prevIndex = mediasProfil.indexOf(media) - 1;
+                prevIndex = prevIndex < 0 ? mediasProfil.indexOf(media) : prevIndex;
+                
             });
         }
 
@@ -98,68 +101,17 @@ function createGalery(mediasProfil ) {
                 modal.style.visibility = "visible"; 
                 videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
                 body.style.overflowY = "hidden";
+
+                nextIndex = mediasProfil.indexOf(media) + 1;
+                nextIndex = nextIndex < mediasProfil.length ? nextIndex : mediasProfil.indexOf(media);
+                prevIndex = mediasProfil.indexOf(media) - 1;
+                prevIndex = prevIndex < 0 ? mediasProfil.indexOf(media) : prevIndex;
             });
-            
         }
 
         container.appendChild(newContainerInfos);
-
-            
-        
-
-       /*  if (media.video) {
-             /** Creation container */
-             /*const container = document.createElement('div');
-             bodySection.appendChild(container);
- 
-             /** Creation video */
-
-            /*  const newVideo = document.createElement('video');
-             newVideo.className = "media";
-             newVideo.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`; */
-
-             /** Creation containers */
-/* 
-             const newContainerInfos = document.createElement('div');
-             newContainerInfos.className ="container-media";
-
-             const containerLikes = document.createElement('div');
-             containerLikes.className = "container-likes";
-
-             /** Creation elements titre, likes et coeur */
-
-             /*const newTitle = document.createElement('div');
-             newTitle.className = "title-media"
-             newTitle.textContent = media.title;
-             newContainerInfos.appendChild(newTitle);
-
-             const newLikes = document.createElement('div');
-             newLikes.className = "likes-media";
-             newLikes.textContent = media.likes;
-
-             const newHeart = document.createElement('img');
-             newHeart.className = "heart";
-             newHeart.src = "./FishEye_Photos/png/heart.png"
-             containerLikes.appendChild(newLikes);
-             containerLikes.appendChild(newHeart);
-             newContainerInfos.appendChild(containerLikes);
-
-             container.appendChild(newVideo);
-             container.appendChild(newContainerInfos); */
-
-          /*    newVideo.addEventListener('click', function() {
-                videoModal.style.display = "inline-block";
-                videoModal.style.visibility = "visible";
-                photoModal.style.display = "none";
-                modal.style.visibility = "visible"; 
-                videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
-                body.style.overflowY = "hidden";
-            });
-        }; */
-
         localStorage.setItem('nbrLikes', `${TLikes}`);  
-        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;
-      
+        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
     });
 }
 
@@ -192,7 +144,7 @@ function setInfosProfil() {
     });
 };
 
-function setMediasProfil() {
+function sortedMediasProfil() {
 
     fetch("photographes.json")
     .then(response => response.json())
@@ -200,7 +152,7 @@ function setMediasProfil() {
         mediasProfil = data.media.filter(
         media => media.photographerId == idProfil);
 
-        let TLikes = 0;
+       /*  let TLikes = 0; */
 
     selectorDate.addEventListener("click", function() {
 
@@ -245,8 +197,16 @@ function setMediasProfil() {
     });
 };
 
+chevronLeft.addEventListener('click', function() {
+    photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[prevIndex].image}`;
+});
+
+chevronRight.addEventListener('click', function() {
+    photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[nextIndex].image}`;
+});
+
 setInfosProfil();
-setMediasProfil();
+sortedMediasProfil();
 
 selectorPopularite.addEventListener('click', function() {
 
