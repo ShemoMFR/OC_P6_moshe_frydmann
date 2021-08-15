@@ -25,11 +25,11 @@ const body = document.getElementsByTagName('body')[0];
 const exitModal = document.getElementsByClassName('exit-modal')[0];
 const chevronLeft = document.getElementById('chevron-left');
 const chevronRight = document.getElementById('chevron-right');
+const titleModal = document.getElementsByClassName('title-modal')[0];
 let mediasProfil;
 let profilPage;
 let TLikes = 0;
-let nextIndex = 0;
-let prevIndex = 0;
+let currentIndex = 0;
 
 function createGalery(mediasProfil) {
     mediasProfil.map(media => {
@@ -80,10 +80,22 @@ function createGalery(mediasProfil) {
                 photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
                 body.style.overflowY = "hidden";
 
-                nextIndex = mediasProfil.indexOf(media) + 1;
-                nextIndex = nextIndex < mediasProfil.length ? nextIndex : mediasProfil.indexOf(media);  
-                prevIndex = mediasProfil.indexOf(media) - 1;
-                prevIndex = prevIndex < 0 ? mediasProfil.indexOf(media) : prevIndex;
+                titleModal.textContent = media.title;
+                currentIndex = mediasProfil.indexOf(media);
+
+                if (currentIndex === 0) {
+                    chevronLeft.style.opacity = "0.2";
+                }
+                else {
+                    chevronLeft.style.opacity = "1";
+                };
+
+                if (currentIndex === mediasProfil.length - 1) {
+                    chevronRight.style.opacity = "0.2";
+                }
+                else {
+                    chevronRight.style.opacity = "1";
+                };
                 
             });
         }
@@ -102,10 +114,12 @@ function createGalery(mediasProfil) {
                 videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
                 body.style.overflowY = "hidden";
 
-                nextIndex = mediasProfil.indexOf(media) + 1;
-                nextIndex = nextIndex < mediasProfil.length ? nextIndex : mediasProfil.indexOf(media);
-                prevIndex = mediasProfil.indexOf(media) - 1;
-                prevIndex = prevIndex < 0 ? mediasProfil.indexOf(media) : prevIndex;
+                titleModal.textContent = media.title;
+                currentIndex = mediasProfil.indexOf(media);
+
+                if (currentIndex === 0) {
+                    chevronLeft.style.opacity = "0.2";
+                }
             });
         }
 
@@ -198,11 +212,58 @@ function sortedMediasProfil() {
 };
 
 chevronLeft.addEventListener('click', function() {
-    photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[prevIndex].image}`;
+
+    currentIndex = currentIndex > 0 ? --currentIndex : currentIndex;
+
+    if (mediasProfil[currentIndex].image) {
+        photoModal.style.display = "flex";
+        photoModal.style.visibility = "visible";
+        videoModal.style.display = "none";
+        photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].image}`;
+        titleModal.textContent = mediasProfil[currentIndex].title;
+    } else {
+        photoModal.style.display = "none";
+        videoModal.style.display = "inline-block";
+        videoModal.style.visibility = "visible";
+        titleModal.textContent = mediasProfil[currentIndex].title;
+        videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`; 
+    }  
+
+    if (currentIndex === 0) {
+        chevronLeft.style.opacity = "0.2";
+    };
+
+    if (currentIndex < mediasProfil.length - 1 ) {
+        chevronRight.style.opacity = "1";
+    };
+  
 });
 
 chevronRight.addEventListener('click', function() {
-    photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[nextIndex].image}`;
+
+    currentIndex = currentIndex < mediasProfil.length - 1 ? ++currentIndex : currentIndex;
+       
+    if (mediasProfil[currentIndex].image) {
+        photoModal.style.display = "flex";
+        photoModal.style.visibility = "visible";
+        videoModal.style.display = "none";
+        titleModal.textContent = mediasProfil[currentIndex].title;
+        photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].image}`;
+    } else {
+        photoModal.style.display = "none";
+        videoModal.style.display = "inline-block";
+        videoModal.style.visibility = "visible";
+        titleModal.textContent = mediasProfil[currentIndex].title;
+        videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`;
+    }  
+
+    if (currentIndex !== 0) {
+        chevronLeft.style.opacity = "1";
+    };
+
+    if (currentIndex === mediasProfil.length - 1 ) {
+        chevronRight.style.opacity = "0.2";
+    }
 });
 
 setInfosProfil();

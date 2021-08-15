@@ -327,3 +327,8 @@ a {
     width: 50%;
     height: 800px;
 }
+
+.title-modal {
+    padding-top: 10px;
+    padding-left: 25%;
+}
