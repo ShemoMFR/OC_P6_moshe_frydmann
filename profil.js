@@ -26,6 +26,10 @@ const exitModal = document.getElementsByClassName('exit-modal')[0];
 const chevronLeft = document.getElementById('chevron-left');
 const chevronRight = document.getElementById('chevron-right');
 const titleModal = document.getElementsByClassName('title-modal')[0];
+const formulaireContact = document.getElementsByClassName('form-container')[0];
+const form = document.getElementsByClassName('form')[0];
+const contact = document.getElementsByClassName('contactez-moi')[0];
+const exitBlanc = document.getElementsByClassName('exitBlanc')[0];
 let mediasProfil;
 let profilPage;
 let TLikes = 0;
@@ -294,5 +298,20 @@ exitModal.addEventListener('click', function() {
     photoModal.style.visibility = "hidden";
     videoModal.style.visibility = "hidden";
 });
+
+
+contact.addEventListener('click', () => {
+    formulaireContact.style.visibility = "visible";
+});
+
+exitBlanc.addEventListener('click', () => {
+    formulaireContact.style.visibility = "hidden";
+});
+
+/**** Au submit réouvre la page du photographe car sinon si la page se rafraichit, on perd les queryParams *****/
+form.addEventListener('submit', () => {
+   window.open(`profil.html?id=${idProfil}`);
+})
+
 
 
