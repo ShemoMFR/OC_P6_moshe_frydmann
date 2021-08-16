@@ -170,6 +170,12 @@ function sortedMediasProfil() {
         mediasProfil = data.media.filter(
         media => media.photographerId == idProfil);
 
+        mediasProfil.sort( function(a, b) {
+            a = a.likes;
+            b = b.likes;
+            return a > b ? -1 : a < b ? 1 : 0;
+        });
+
        /*  let TLikes = 0; */
 
     selectorDate.addEventListener("click", function() {
