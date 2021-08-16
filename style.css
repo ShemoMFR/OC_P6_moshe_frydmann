@@ -148,6 +148,12 @@ a {
     padding: 0px 10px;
 }
 
+.tag:hover {
+    background-color: #911C1C;
+    border: 0.5px solid #911C1C;
+    color: white;
+}
+
 #test {
     width: 500px;
     height: 500px;

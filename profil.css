@@ -32,7 +32,7 @@ body {
     display: grid;
     grid-template-columns: 30% 30% 30%;
     grid-gap: 5%;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .media {
@@ -44,6 +44,7 @@ body {
 }
 
 .titre-selector {
+    margin-top: 10px;
     font-family: DM Sans;
     font-style: normal;
     font-weight: bold;
@@ -105,6 +106,12 @@ body {
     color: #911C1C;
     margin-bottom: 5px;
     padding: 0px 10px;
+}
+
+.tag:hover {
+    background-color: #911C1C;
+    border: 0.5px solid #911C1C;
+    color: white;
 }
 
 a {
@@ -185,6 +192,7 @@ a {
     width: 20px;
     height: 20px;
     margin-left: 5px;
+    cursor: pointer;
 }
 
 .profil-tjm-likes {
@@ -224,13 +232,12 @@ a {
 .recherche-selector-trie {
     position: relative;
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .popularite {
     position: absolute;
     left: 60px;
-    top: 10px;
     width: 170px;
     background: #911C1C;
     border-radius: 5px;
@@ -428,9 +435,10 @@ a {
     font-family: DM Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 64px;
+    font-size: 60px;
     line-height: 83px;
     color: #000000;
+    padding-bottom: 20px;
 }
 
 .contactez-moi {

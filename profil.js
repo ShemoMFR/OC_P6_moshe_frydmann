@@ -8,6 +8,7 @@ const bodySection = document.getElementsByClassName('body-section')[0];
 const selectorPopularite = document.getElementsByClassName('container-title1')[0];
 const selectorOpen = document.getElementsByClassName('selector-open')[0];
 const fleche = document.getElementById('fleche');
+const selectorPop = document.getElementById('popularite-title1');
 const selectorDate = document.getElementById('popularite-title2');
 const selectorTitle = document.getElementById('popularite-title3');
 const urlParams = new URLSearchParams(window.location.search);
@@ -30,6 +31,7 @@ const formulaireContact = document.getElementsByClassName('form-container')[0];
 const form = document.getElementsByClassName('form')[0];
 const contact = document.getElementsByClassName('contactez-moi')[0];
 const exitBlanc = document.getElementsByClassName('exitBlanc')[0];
+const photographeName = document.getElementById('photographe-name');
 let mediasProfil;
 let profilPage;
 let TLikes = 0;
@@ -68,6 +70,13 @@ function createGalery(mediasProfil) {
             containerLikes.appendChild(newLikes);
             containerLikes.appendChild(newHeart);
             newContainerInfos.appendChild(containerLikes);
+
+            newHeart.addEventListener('click', () => {
+                const likes = parseInt(newLikes.textContent) + 1;
+                newLikes.textContent = likes;
+                localStorage.setItem('nbrLikes', parseInt(`${localStorage.getItem('nbrLikes')}`) + 1);  
+                TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;                
+            });
 
         if (media.image) {
             const newImg = document.createElement('img');
@@ -178,6 +187,12 @@ function sortedMediasProfil() {
 
        /*  let TLikes = 0; */
 
+    selectorPop.addEventListener('click', function() {
+        if (isOpen) {
+            window.open(`profil.html?id=${idProfil}`);
+        }
+    })
+
     selectorDate.addEventListener("click", function() {
 
         localStorage.setItem('sortedBy', 'date');
@@ -216,8 +231,6 @@ function sortedMediasProfil() {
 
     else {createGalery(mediasProfil);};
 
-    localStorage.clear(); 
- 
     });
 };
 
@@ -308,6 +321,9 @@ exitModal.addEventListener('click', function() {
 
 contact.addEventListener('click', () => {
     formulaireContact.style.visibility = "visible";
+    photographeName.textContent = `${nomProfil.textContent}`; 
+
+
 });
 
 exitBlanc.addEventListener('click', () => {
