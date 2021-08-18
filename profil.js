@@ -140,6 +140,9 @@ function createGalery(mediasProfil) {
         localStorage.setItem('nbrLikes', `${TLikes}`);  
         TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
     });
+
+    localStorage.removeItem('sortedBy');
+
 }
 
 function setInfosProfil() {
@@ -232,6 +235,7 @@ function sortedMediasProfil() {
     else {createGalery(mediasProfil);};
 
     });
+
 };
 
 chevronLeft.addEventListener('click', function() {
@@ -322,7 +326,6 @@ exitModal.addEventListener('click', function() {
 contact.addEventListener('click', () => {
     formulaireContact.style.visibility = "visible";
     photographeName.textContent = `${nomProfil.textContent}`; 
-
 
 });
 
