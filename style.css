@@ -165,42 +165,88 @@ a {
 @media screen and (max-width: 1120px) {
     #main-section {
         display: grid;
-        grid-template-columns: 50% 50%;
-        /*grid-gap: 20%;*/
-    }
-
-    nav ul {
-        width: 1000px;
-        position: absolute;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        top: 15%;
-        border: 1px solid red;
-    }
-}
-
-@media screen and (max-width: 900px) {
-
-    #main-section {
-        margin-top: 140px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    #main-section {
-        display: flex;
-        flex-direction: column;        
+        grid-template-columns: 45% 45%;
+        grid-gap: 10%;
     }
 
     .main-container {
-        padding: 5px;
+        padding: 40px 40px;
+        margin: auto;
+    }
+
+    nav ul {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        top: 15%;
+        flex-wrap: wrap;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #main-section {
+        margin: 0;
+        margin-top: 140px;
+    }
+
+
+}
+
+@media screen and (max-width: 800px) {
+
+    .main-container {
+        padding: 40px 40px;
+        margin: auto;
+    }
+
+    header {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #logo {
+        margin-left: 20px;
+        width: 150px;
+    }
+
+    .text-header {
+        margin-right: 20px;
+        font-size: 30px;
+    }
+
+   
+    
+}
+
+@media screen and (max-width: 600px) {
+
+    #main-section {
+        display: flex;
+        flex-direction: column;        
     }
 
     .card {
         margin-bottom: 40px;
     }
 }
+
+@media screen and (max-width: 500px) {
+    #logo {
+        margin-top: 10px;
+        margin-left: 20px;
+        width: 100px;
+    }
+
+    .text-header {
+        margin-right: 20px;
+        font-size: 21px;
+    }
+
+    .tag {
+        font-size: 14px;
+    }
+}
+
 
 
 
