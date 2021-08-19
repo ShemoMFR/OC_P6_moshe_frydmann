@@ -326,11 +326,12 @@ exitModal.addEventListener('click', function() {
 contact.addEventListener('click', () => {
     formulaireContact.style.visibility = "visible";
     photographeName.textContent = `${nomProfil.textContent}`; 
-
+    formulaireContact.style.animation = 'modalopen 1.5s';
 });
 
 exitBlanc.addEventListener('click', () => {
     formulaireContact.style.visibility = "hidden";
+    formulaireContact.style.animation = '';
 });
 
 /**** Au submit réouvre la page du photographe car sinon si la page se rafraichit, on perd les queryParams *****/

@@ -361,6 +361,15 @@ a {
     background-color: rgba(158, 155, 155, 0.5);
 } 
 
+@keyframes modalopen {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
 .form {
     position: relative;
     display: flex;
