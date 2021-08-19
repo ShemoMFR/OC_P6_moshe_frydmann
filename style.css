@@ -31,6 +31,7 @@ li {
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 .text-header {
@@ -44,10 +45,12 @@ a {
 }
 
 .link-container {
-    display: flex;
-    justify-content: center;
+    position: fixed;
+    left: 0;
     width: 100%;
-    visibility: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 .link {
     text-align: center;
@@ -188,8 +191,6 @@ a {
         margin: 0;
         margin-top: 140px;
     }
-
-
 }
 
 @media screen and (max-width: 800px) {
@@ -213,8 +214,6 @@ a {
         margin-right: 20px;
         font-size: 30px;
     }
-
-   
     
 }
 
@@ -228,9 +227,7 @@ a {
     .card {
         margin-bottom: 40px;
     }
-}
 
-@media screen and (max-width: 500px) {
     #logo {
         margin-top: 10px;
         margin-left: 20px;
@@ -242,10 +239,28 @@ a {
         font-size: 21px;
     }
 
-    .tag {
-        font-size: 14px;
+    nav ul {
+        margin-top: -10px;
     }
 }
+
+@media screen and (max-width: 450px) {
+    #logo {
+        margin-top: 12px;
+        margin-left: 10px;
+        width: 80px;
+    }
+
+    .text-header {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .tag {
+        font-size: 12px;
+    }
+}
+
 
 
 

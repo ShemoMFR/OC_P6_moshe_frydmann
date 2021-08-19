@@ -45,7 +45,7 @@
       "id": 925,
       "city": "Barcelona",
       "country": "Spain",
-      "tags": ["sport", "fashion", "events", "animals"],
+      "tags": ["sports", "fashion", "events", "animals"],
       "tagline": "Je crée des souvenirs",
       "price": 275,
       "portrait": "RhodeDubois.jpg"
@@ -168,7 +168,7 @@
       "photographerId": 925,
       "title": "8 Rows",
       "image": "Sport_2000_with_8.jpg",
-      "tags": ["sport"],
+      "tags": ["sports"],
       "likes": 52,
       "date": "2013-02-30",
       "price": 70
