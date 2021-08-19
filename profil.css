@@ -473,6 +473,10 @@ a {
         margin-left: -140px;
     }
 
+    .contactez-moi {
+        height: 40px;
+    }
+
     .profil-tjm-likes {
         display: none;
     }
@@ -489,6 +493,8 @@ a {
     #container-contactez-moi {
         margin-left: -40px;
     }
+
+
 }
 
 @media screen and (max-width: 804px) {
@@ -552,13 +558,22 @@ a {
     }
 
     .body-section {
-        margin-top: 60px;
+        margin-top: 40px;
         display: grid;
         grid-template-columns: 100%;
+        grid-gap: 0;
     }
 
     .media {
-        height: 300px;
+        height: 250px;
+    }
+
+    .container-likes {
+        margin-bottom: 30px;
+    }
+
+    .infos-profil {
+        padding-left: 20px;
     }
 }
 
