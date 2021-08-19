@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 .main-container {
-    padding: 40px 140px;
+    padding: 40px 5%;
     max-width: 1600px;
     margin: auto;
 }
@@ -67,8 +67,7 @@ a {
     display: grid;
     grid-template-columns: 30% 30% 30%;
     grid-gap: 5%;
-    margin-left: -100px;
-    margin-right: -100px;
+    
 }
 
 .card {
@@ -166,15 +165,11 @@ a {
 /********** MEDIAS QUERIES **********/
 
 @media screen and (max-width: 1120px) {
+
     #main-section {
         display: grid;
         grid-template-columns: 45% 45%;
         grid-gap: 10%;
-    }
-
-    .main-container {
-        padding: 40px 40px;
-        margin: auto;
     }
 
     nav ul {
@@ -193,13 +188,8 @@ a {
     }
 }
 
-@media screen and (max-width: 800px) {
-
-    .main-container {
-        padding: 40px 40px;
-        margin: auto;
-    }
-
+/* @media screen and (max-width: 800px) {
+  
     header {
         justify-content: space-between;
         width: 100%;
@@ -215,7 +205,7 @@ a {
         font-size: 30px;
     }
     
-}
+} */
 
 @media screen and (max-width: 600px) {
 
@@ -245,17 +235,7 @@ a {
 }
 
 @media screen and (max-width: 450px) {
-    #logo {
-        margin-top: 12px;
-        margin-left: 10px;
-        width: 80px;
-    }
-
-    .text-header {
-        margin-right: 10px;
-        font-size: 18px;
-    }
-
+    
     .tag {
         font-size: 12px;
     }

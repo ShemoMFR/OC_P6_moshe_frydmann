@@ -12,7 +12,7 @@ body {
 }
 
 .main-container {
-    padding: 40px 140px;
+    padding: 40px 5%;
     max-width: 1600px;
     margin: auto;
 }
@@ -21,11 +21,11 @@ body {
     position: relative;
     display: flex;
     width: 100%;
-    height: 300px;
     margin-top: 40px;
     background: #FAFAFA;
     border-radius: 5px;
     padding-top: 40px;
+    padding-bottom: 20px;
 }
 
 .body-section {
@@ -62,9 +62,9 @@ body {
     font-style: normal;
     font-weight: normal;
     font-size: 64px;
-    line-height: 83px;
     color: #D3573C;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #ville-profil {
@@ -97,6 +97,7 @@ body {
     color: #911C1C;
 }
 
+
 .tag {
     margin-right: 10px;
     border-radius: 20px;
@@ -127,8 +128,8 @@ a {
 
 #photo-top-section {
     position: absolute;
-    right: 2%;
-    margin-right: 20px;
+    right: 4%;
+    top: 18%;
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -200,12 +201,14 @@ a {
     display: flex;
     align-items: center;
     width: 376px;
+    max-width: 1600px;
     height: 89px;
     right: 10%;
     bottom: 0;
     background: #DB8876;
     border-radius: 5px;
 }
+
 
 .total-likes {
     margin-left: 20px;
@@ -453,3 +456,109 @@ a {
 .contactez-moi {
     cursor: pointer;
 }
+
+/********************** MEDIAS QUERIES *******************/
+
+@media screen and (max-width: 1200px) {
+
+    #container-contactez-moi {
+        width: 100%;
+        margin: 0;
+        padding: 0;display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        margin-bottom: 10px;
+        margin-left: -140px;
+    }
+
+    .profil-tjm-likes {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    .body-section {
+        display: grid;
+        grid-template-columns: 48% 48%;
+    }
+
+    #container-contactez-moi {
+        margin-left: -40px;
+    }
+}
+
+@media screen and (max-width: 804px) {
+
+    .top-section {
+        padding-top: 0px;
+    }
+
+    #nom-profil {
+        font-size: 44px;
+    }
+
+    #ville-profil {
+        font-size: 18px;
+    }
+
+    #citation-profil {
+        font-size: 15px;
+    }
+
+    #tag-profil {
+        font-size: 15px;
+
+    }
+
+    #photo-top-section {
+        width: 150px;
+        height: 150px;
+        top: 10%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    #nom-profil {
+        font-size: 24px;
+        margin-bottom: 0;
+    }
+
+    #ville-profil {
+        font-size: 10px;
+        margin-bottom: 0;
+
+    }
+
+    #citation-profil {
+        font-size: 10px;
+        margin-bottom: 0;
+
+    }
+
+    #tag-profil {
+        font-size: 10px;
+
+    }
+
+    #photo-top-section {
+        width: 100px;
+        height: 100px;
+        top: 8%;
+    }
+
+    .body-section {
+        margin-top: 60px;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .media {
+        height: 300px;
+    }
+}
+

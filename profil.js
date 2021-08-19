@@ -335,9 +335,11 @@ exitBlanc.addEventListener('click', () => {
 });
 
 /**** Au submit réouvre la page du photographe car sinon si la page se rafraichit, on perd les queryParams *****/
-form.addEventListener('submit', () => {
-   window.open(`profil.html?id=${idProfil}`);
-})
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formulaireContact.style.visibility = "hidden";
+    formulaireContact.style.animation = '';
+ })
 
 
 
