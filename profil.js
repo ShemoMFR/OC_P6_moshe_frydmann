@@ -39,107 +39,107 @@ let currentIndex = 0;
 
 function createGalery(mediasProfil) {
     mediasProfil.map(media => {
-        TLikes += parseInt(media.likes);
+    TLikes += parseInt(media.likes);
 
-            /** Creation container */
-            const container = document.createElement('div');
-            bodySection.appendChild(container);  
+    /** Creation container */
+    const container = document.createElement('div');
+    bodySection.appendChild(container);  
 
-             /** Creation containers */
+        /** Creation containers */
 
-            const newContainerInfos = document.createElement('div');
-            newContainerInfos.className ="container-media";
+    const newContainerInfos = document.createElement('div');
+    newContainerInfos.className ="container-media";
 
-            const containerLikes = document.createElement('div');
-            containerLikes.className = "container-likes";
+    const containerLikes = document.createElement('div');
+    containerLikes.className = "container-likes";
 
-             /** Creation elements titre, likes et coeur */
+        /** Creation elements titre, likes et coeur */
 
-            const newTitle = document.createElement('div');
-            newTitle.className = "title-media"
-            newTitle.textContent = media.title;
-            newContainerInfos.appendChild(newTitle);
+    const newTitle = document.createElement('div');
+    newTitle.className = "title-media"
+    newTitle.textContent = media.title;
+    newContainerInfos.appendChild(newTitle);
 
-            const newLikes = document.createElement('div');
-            newLikes.className = "likes-media";
-            newLikes.textContent = media.likes;
+    const newLikes = document.createElement('div');
+    newLikes.className = "likes-media";
+    newLikes.textContent = media.likes;
 
-            const newHeart = document.createElement('img');
-            newHeart.className = "heart";
-            newHeart.src = "./FishEye_Photos/png/heart.png";
-            containerLikes.appendChild(newLikes);
-            containerLikes.appendChild(newHeart);
-            newContainerInfos.appendChild(containerLikes);
+    const newHeart = document.createElement('img');
+    newHeart.className = "heart";
+    newHeart.src = "./FishEye_Photos/png/heart.png";
+    containerLikes.appendChild(newLikes);
+    containerLikes.appendChild(newHeart);
+    newContainerInfos.appendChild(containerLikes);
 
-            newHeart.addEventListener('click', () => {
-                const likes = parseInt(newLikes.textContent) + 1;
-                newLikes.textContent = likes;
-                localStorage.setItem('nbrLikes', parseInt(`${localStorage.getItem('nbrLikes')}`) + 1);  
-                TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;                
-            });
-
-        if (media.image) {
-            const newImg = document.createElement('img');
-            newImg.className = "media";
-            newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
-            container.appendChild(newImg);
-
-            newImg.addEventListener('click', function() {
-
-                photoModal.style.display = "flex";
-                photoModal.style.visibility = "visible";
-                videoModal.style.display = "none";
-                modal.style.visibility = "visible";
-                photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
-                body.style.overflowY = "hidden";
-
-                titleModal.textContent = media.title;
-                currentIndex = mediasProfil.indexOf(media);
-
-                if (currentIndex === 0) {
-                    chevronLeft.style.opacity = "0.2";
-                }
-                else {
-                    chevronLeft.style.opacity = "1";
-                };
-
-                if (currentIndex === mediasProfil.length - 1) {
-                    chevronRight.style.opacity = "0.2";
-                }
-                else {
-                    chevronRight.style.opacity = "1";
-                };
-                
-            });
-        }
-
-        else if (media.video) {
-            const newVideo = document.createElement('video');
-            newVideo.className = "media";
-            newVideo.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
-            container.appendChild(newVideo);
-
-            newVideo.addEventListener('click', function() {
-                videoModal.style.display = "inline-block";
-                videoModal.style.visibility = "visible";
-                photoModal.style.display = "none";
-                modal.style.visibility = "visible"; 
-                videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
-                body.style.overflowY = "hidden";
-
-                titleModal.textContent = media.title;
-                currentIndex = mediasProfil.indexOf(media);
-
-                if (currentIndex === 0) {
-                    chevronLeft.style.opacity = "0.2";
-                }
-            });
-        }
-
-        container.appendChild(newContainerInfos);
-        localStorage.setItem('nbrLikes', `${TLikes}`);  
-        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
+    newHeart.addEventListener('click', () => {
+        const likes = parseInt(newLikes.textContent) + 1;
+        newLikes.textContent = likes;
+        localStorage.setItem('nbrLikes', parseInt(`${localStorage.getItem('nbrLikes')}`) + 1);  
+        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;                
     });
+
+    if (media.image) {
+        const newImg = document.createElement('img');
+        newImg.className = "media";
+        newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
+        container.appendChild(newImg);
+
+        newImg.addEventListener('click', function() {
+
+            photoModal.style.display = "flex";
+            photoModal.style.visibility = "visible";
+            videoModal.style.display = "none";
+            modal.style.visibility = "visible";
+            photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
+            body.style.overflowY = "hidden";
+
+            titleModal.textContent = media.title;
+            currentIndex = mediasProfil.indexOf(media);
+
+            if (currentIndex === 0) {
+                chevronLeft.style.opacity = "0.2";
+            }
+            else {
+                chevronLeft.style.opacity = "1";
+            };
+
+            if (currentIndex === mediasProfil.length - 1) {
+                chevronRight.style.opacity = "0.2";
+            }
+            else {
+                chevronRight.style.opacity = "1";
+            };
+            
+        });
+    }
+
+    else if (media.video) {
+        const newVideo = document.createElement('video');
+        newVideo.className = "media";
+        newVideo.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
+        container.appendChild(newVideo);
+
+        newVideo.addEventListener('click', function() {
+            videoModal.style.display = "inline-block";
+            videoModal.style.visibility = "visible";
+            photoModal.style.display = "none";
+            modal.style.visibility = "visible"; 
+            videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
+            body.style.overflowY = "hidden";
+
+            titleModal.textContent = media.title;
+            currentIndex = mediasProfil.indexOf(media);
+
+            if (currentIndex === 0) {
+                chevronLeft.style.opacity = "0.2";
+            }
+        });
+    }
+
+    container.appendChild(newContainerInfos);
+    localStorage.setItem('nbrLikes', `${TLikes}`);  
+    TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
+});
 
     localStorage.removeItem('sortedBy');
 
