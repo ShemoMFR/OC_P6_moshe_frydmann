@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +8,13 @@
     <title id="title-page"></title>
 </head>
 <body>
-<div class="main-container">
+<div class="main-container" >
     <header>
         <div class="logo-container">
-            <a href="index.html"><img src="./FishEye_Photos/logo/logo.png" alt="FishEye home page"/></a>
+            <a href="index.html" aria-label="homepage link"><img src="./FishEye_Photos/logo/logo.png" aria-label="logo" tabindex="1" alt="FishEye home page"/></a>
         </div>
     </header>
-    <main class="main-section">
+    <main class="main-section" aria-hidden='false'>
         <section class="top-section">
             <div class="infos-profil">
                 <div id="nom-profil"></div>
@@ -23,30 +23,30 @@
                 <div id="tag-profil"></div>
             </div>
             <div id="container-contactez-moi">
-                <div class="contactez-moi">Contactez-moi</div>
+                <button class="contactez-moi" tabindex="2">Contactez-moi</button>
             </div>
             <div class="card-photo">
                 <img id="photo-top-section"/>
             </div>
         </section>
 
-        <div class="recherche-selector-trie">
+        <section class="recherche-selector-trie">
             <p class="titre-selector">Trier par</p>
-            <div class="popularite">
-                <div class="container-title1">
-                    <div id="popularite-title1">Popularité</div>
+            <div class="popularite" aria-haspopup="listbox" aria-label='sélécteur tri images' role="selector">
+                <div class="container-title1" >
+                    <button id="popularite-title1" aria-label="trier par popularité" >Popularité</button>
                     <img src="./FishEye_Photos/svg/fleche-bas.svg" id="fleche" />
                 </div>
                 <div class="selector-open">
                     <div class="container-title2">
-                        <div id="popularite-title2">Date</div>
+                        <button id="popularite-title2" aria-selected="false" role="listbox" aria-label="trier par date" >Date</button>
                     </div>
                     <div class="container-title2">
-                        <div id="popularite-title3">Titre</div>
+                        <button id="popularite-title3" aria-selected="false" role="listbox" aria-label="trier par titre" >Titre</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <section class="body-section">
 
@@ -59,7 +59,7 @@
         </div>
     </main>
 
-    <div class="modal-bg">
+    <div class="modal-bg" role="dialog">
         <div class='modal'>
             <div class="modal-centre">
                 <img class="chevron-modal" id="chevron-left" src="./FishEye_Photos/svg/chevron-left.svg" />
@@ -67,28 +67,30 @@
                 <video controls="controls" class="video-modal"></video>                
                 <img class="chevron-modal" id ="chevron-right" src="./FishEye_Photos/svg/chevron-right.svg"/>
             </div>
-            <img class="exit-modal" src="./FishEye_Photos/svg/exit.svg"/>
+            <button class="exit-modal-event" aria-label="sortie photo" >
+                <img class="exit-modal" src="./FishEye_Photos/svg/exit.svg" tabindex="0"/>
+            </button>
             <div class='title-modal title-media'></div>
         </div>
     </div>
 </div>
 
-<div class="form-container">
+<section class="form-container">
     <form class="form" type="submit">
         <img class="exitBlanc" src="./FishEye_Photos/png/exitBlanc.png" alt="croix sortie formulaire" />
         <h1 class='form-title'>Contactez-moi</h1> 
         <h2 id="photographe-name"></h2> 
-        <label class="label-form">Prénom</label>
-        <input class="input-form" type="text" for="prénom" />
-        <label class="label-form">Nom</label>
-        <input class="input-form" type="text" for="Nom" />
-        <label class="label-form">Email</label>
-        <input class="input-form" type="text" for="Email" />
-        <label class="label-form">Votre message</label>
-        <textarea class="textarea-form" rows="5"></textarea>
+        <label class="label-form" for="prénom" >Prénom</label>
+        <input class="input-form" type="text" id="prénom" />
+        <label class="label-form" for="nom" >Nom</label>
+        <input class="input-form" type="text" id="Nom" />
+        <label class="label-form" for="Email" >Email</label>
+        <input class="input-form" type="text" id="Email" />
+        <label class="label-form" for="textarea" >Votre message</label>
+        <textarea class="textarea-form" rows="5" id="textarea"></textarea>
         <button class="btn-form">Envoyer</button>
     </form>
-</div>
+</section>
 
 <script src="./profil.js"></script>
 </body>

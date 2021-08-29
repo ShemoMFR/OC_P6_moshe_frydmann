@@ -23,7 +23,7 @@ const photoModal = document.getElementsByClassName('photo-modal')[0];
 const videoModal = document.getElementsByClassName('video-modal')[0];
 const sourceModal = document.getElementById('source-modal');
 const body = document.getElementsByTagName('body')[0];
-const exitModal = document.getElementsByClassName('exit-modal')[0];
+const exitModal = document.getElementsByClassName('exit-modal-event')[0];
 const chevronLeft = document.getElementById('chevron-left');
 const chevronRight = document.getElementById('chevron-right');
 const titleModal = document.getElementsByClassName('title-modal')[0];
@@ -82,10 +82,14 @@ function createGalery(mediasProfil) {
         const newImg = document.createElement('img');
         newImg.className = "media";
         newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
+        newImg.alt = `${media.title}`
         container.appendChild(newImg);
 
         newImg.addEventListener('click', function() {
 
+            const mainSection = document.getElementsByClassName('main-section')[0];
+
+            mainSection.setAttribute('aria-hidden', 'true');
             photoModal.style.display = "flex";
             photoModal.style.visibility = "visible";
             videoModal.style.display = "none";
@@ -192,7 +196,8 @@ function sortedMediasProfil() {
 
     selectorPop.addEventListener('click', function() {
         if (isOpen) {
-            window.open(`profil.html?id=${idProfil}`);
+            //window.open(`profil.html?id=${idProfil}`);
+            window.location.reload();
         }
     })
 
@@ -316,6 +321,9 @@ selectorPopularite.addEventListener('click', function() {
 });
 
 exitModal.addEventListener('click', function() {
+    const mainSection = document.getElementsByClassName('main-section')[0];
+
+    mainSection.setAttribute('aria-hidden', 'false');
     modal.style.visibility = "hidden";
     body.style.overflowY = "visible";
     photoModal.style.visibility = "hidden";

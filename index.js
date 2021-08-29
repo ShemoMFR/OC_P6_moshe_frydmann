@@ -34,7 +34,7 @@ function displayProfils(photographe) {
     aPhoto.href = `profil.html?id=${photographe.id}`;
     const divPhoto = document.createElement('img');
     divPhoto.src = "./FishEye_Photos/Photos/Photographers/" + photographe.portrait;
-    divPhoto.alt = "";
+    divPhoto.alt = `Photo de profil du photographe ${photographe.name}`;
     divPhoto.className = "card-photo";
     aPhoto.appendChild(divPhoto);
     newDiv.appendChild(aPhoto);
