@@ -327,7 +327,7 @@ exitModal.addEventListener('click', function() {
     modal.style.visibility = "hidden";
     body.style.overflowY = "visible";
     photoModal.style.visibility = "hidden";
-    videoModal.style.visibility = "hidden";
+    videoModal.style.visibility = "hidden";s
 });
 
 
