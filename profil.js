@@ -36,6 +36,8 @@ let mediasProfil;
 let profilPage;
 let TLikes = 0;
 let currentIndex = 0;
+let i = 1;
+let isModalOpen = false;
 
 function createGalery(mediasProfil) {
     mediasProfil.map(media => {
@@ -338,11 +340,13 @@ contact.addEventListener('click', () => {
     photographeName.textContent = `${nomProfil.textContent}`; 
     formulaireContact.style.animation = 'modalopen 1.5s';
     document.getElementsByClassName("input-form")[0].focus();
+    isModalOpen = true;
 });
 
 exitBlanc.addEventListener('click', () => {
     formulaireContact.style.visibility = "hidden";
     formulaireContact.style.animation = '';
+    isModalOpen = false;
 });
 
 /**** Au submit réouvre la page du photographe car sinon si la page se rafraichit, on perd les queryParams *****/
@@ -350,7 +354,40 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     formulaireContact.style.visibility = "hidden";
     formulaireContact.style.animation = '';
+    isModalOpen = false;
  })
+
+ window.addEventListener("keydown", function (e) {
+     
+    if (isModalOpen) {
+
+        if (e.key !== "Enter") {
+            e.preventDefault();
+        };
+
+        if(e.key === "Escape" || e.key === "Esc") {
+            formulaireContact.style.visibility = "hidden";
+            formulaireContact.style.animation = '';
+            isModalOpen = false;
+        };
+
+        if (e.key === "Tab") {
+
+            const modalFocus = document.getElementsByClassName("js-modal-focus");
+
+            if (i >= modalFocus.length) {
+                i = 0;
+            }
+
+            modalFocus[i].focus();
+
+            ++i;
+        };
+    }
+
+
+
+ });
 
 
 

@@ -23,7 +23,7 @@
                 <div id="tag-profil"></div>
             </div>
             <div id="container-contactez-moi">
-                <button class="contactez-moi" tabindex="2">Contactez-moi</button>
+                <button class="contactez-moi" tabindex="1">Contactez-moi</button>
             </div>
             <div class="card-photo">
                 <img id="photo-top-section"/>
@@ -81,20 +81,20 @@
 
 <section class="form-container" aria-labelledby="formulaire contact photographe" aria-hidden="true" role="dialog" aria-modal="false">
     <form class="form" type="submit">
-        <button class="exitBlanc" aria-label="fermeture formulaire">
-            <img  src="./FishEye_Photos/png/exitBlanc.png" alt="croix sortie formulaire" />
-        </button>
         <h1 class='form-title'>Contactez-moi</h1> 
         <h2 id="photographe-name"></h2> 
-        <label class="label-form" for="prénom" >Prénom</label>
-        <input class="input-form" type="text" id="prénom" />
+        <label class="label-form " for="prénom" >Prénom</label>
+        <input class="input-form js-modal-focus" type="text" id="prénom" />
         <label class="label-form" for="nom" >Nom</label>
-        <input class="input-form" type="text" id="Nom" />
+        <input class="input-form js-modal-focus" type="text" id="Nom" />
         <label class="label-form" for="Email" >Email</label>
-        <input class="input-form" type="text" id="Email" />
+        <input class="input-form js-modal-focus" type="text" id="Email" />
         <label class="label-form" for="textarea" >Votre message</label>
-        <textarea class="textarea-form" rows="5" id="textarea"></textarea>
-        <button class="btn-form">Envoyer</button>
+        <textarea class="textarea-form js-modal-focus" rows="5" id="textarea"></textarea>
+        <button class="btn-form js-modal-focus">Envoyer</button>
+        <button class="exitBlanc js-modal-focus" aria-label="fermeture formulaire">
+            <img  src="./FishEye_Photos/png/exitBlanc.png" alt="croix sortie formulaire" />
+        </button>
     </form>
 </section>
 
