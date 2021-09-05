@@ -89,7 +89,8 @@ function createGalery(mediasProfil) {
 
             const mainSection = document.getElementsByClassName('main-section')[0];
 
-            mainSection.setAttribute('aria-hidden', 'true');
+            formulaireContact.ariaHidden = "true";
+            mainSection.ariaHidden = "true"; 
             photoModal.style.display = "flex";
             photoModal.style.visibility = "visible";
             videoModal.style.display = "none";
@@ -323,7 +324,8 @@ selectorPopularite.addEventListener('click', function() {
 exitModal.addEventListener('click', function() {
     const mainSection = document.getElementsByClassName('main-section')[0];
 
-    mainSection.setAttribute('aria-hidden', 'false');
+    formulaireContact.ariaHidden = "false";
+    mainSection.ariaHidden = "false";
     modal.style.visibility = "hidden";
     body.style.overflowY = "visible";
     photoModal.style.visibility = "hidden";
@@ -335,6 +337,7 @@ contact.addEventListener('click', () => {
     formulaireContact.style.visibility = "visible";
     photographeName.textContent = `${nomProfil.textContent}`; 
     formulaireContact.style.animation = 'modalopen 1.5s';
+    document.getElementsByClassName("input-form")[0].focus();
 });
 
 exitBlanc.addEventListener('click', () => {
