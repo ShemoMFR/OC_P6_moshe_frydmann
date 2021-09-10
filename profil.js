@@ -40,6 +40,13 @@ let i = 1;
 let isFormOpen = false;
 let isCarouOpen = false;
 
+function cleanDisplay() {
+    
+    while (bodySection.firstChild) {
+        bodySection.removeChild(bodySection.lastChild);
+    }
+};
+
 function nextVideo() {
     videoModal.style.display = "inline-block";
     videoModal.style.visibility = "visible";
@@ -57,6 +64,7 @@ function nextVideo() {
 };
 
 function createGalery(mediasProfil) {
+
     mediasProfil.map(media => {
     TLikes += parseInt(media.likes);
 
@@ -86,6 +94,7 @@ function createGalery(mediasProfil) {
     const newHeart = document.createElement('img');
     newHeart.className = "heart";
     newHeart.src = "./FishEye_Photos/png/heart.png";
+    newHeart.alt = "nombre de coeurs";
     containerLikes.appendChild(newLikes);
     containerLikes.appendChild(newHeart);
     newContainerInfos.appendChild(containerLikes);
@@ -141,12 +150,20 @@ function createGalery(mediasProfil) {
     }
 
     else if (media.video) {
+        const btn = document.createElement("button");
+        btn.style.width = "100%";
+        btn.ariaLabel = "image provenant de la gallerie du photographe";
         const newVideo = document.createElement('video');
         newVideo.className = "media";
         newVideo.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
         container.appendChild(newVideo);
 
-        newVideo.addEventListener('click', function() {
+        btn.appendChild(newVideo);
+        container.appendChild(btn);
+
+        btn.addEventListener('click', function() {
+
+            isCarouOpen = true;
             videoModal.style.display = "inline-block";
             videoModal.style.visibility = "visible";
             photoModal.style.display = "none";
@@ -215,29 +232,31 @@ function sortedMediasProfil() {
             return a > b ? -1 : a < b ? 1 : 0;
         });
 
-       /*  let TLikes = 0; */
-
     selectorPop.addEventListener('click', function() {
         if (isOpen) {
             //window.open(`profil.html?id=${idProfil}`);
-            window.location.reload();
+            //window.location.reload();
+            cleanDisplay();
+
         }
     })
 
     selectorDate.addEventListener("click", function() {
 
         localStorage.setItem('sortedBy', 'date');
-        window.location.reload();
+        //window.location.reload();
         selectorOpen.style.display = 'none';
-        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
+        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
+        cleanDisplay();
     })
 
     selectorTitle.addEventListener("click", function() {
 
         localStorage.setItem('sortedBy', 'title');
-        window.location.reload();
+        //window.location.reload();
         selectorOpen.style.display = 'none';
-        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
+        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
+        cleanDisplay();
     })
 
     if (localStorage.getItem('sortedBy') == 'date') {
