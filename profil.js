@@ -98,13 +98,19 @@ function createGalery(mediasProfil) {
     });
 
     if (media.image) {
+
+        const btn = document.createElement("button");
+        btn.style.width = "100%";
+        btn.ariaLabel = "image provenant de la gallerie du photographe";
         const newImg = document.createElement('img');
         newImg.className = "media";
         newImg.src = `./FishEye_Photos/Photos/${idProfil}/${media.image}`;
-        newImg.alt = `${media.title}`
-        container.appendChild(newImg);
+        newImg.alt = `${media.title}`;
+        
+        btn.appendChild(newImg);
+        container.appendChild(btn);
 
-        newImg.addEventListener('click', function() {
+        btn.addEventListener('click', function() {
 
             isCarouOpen = true;
             photoModal.style.display = "flex";
@@ -425,11 +431,16 @@ form.addEventListener('submit', (e) => {
 
             if (i >= modalPhotoFocus.length) {
                 i = 0;
+            };
+
+            if (i == 2) {
+                document.getElementsByClassName("exit-modal")[0].style.border = "1px solid red";
+            }
+            else {
+                document.getElementsByClassName("exit-modal")[0].style.border = "none";
             }
 
             modalPhotoFocus[i].focus();
-
-            console.log(modalPhotoFocus[i])
 
             ++i;
 
