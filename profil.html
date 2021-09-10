@@ -33,11 +33,14 @@
         <section class="recherche-selector-trie">
             <p class="titre-selector">Trier par</p>
             <div class="popularite" aria-haspopup="listbox" aria-label='sélécteur tri images' role="listbox">
-                <div class="container-title1" >
-                    <button id="popularite-title1" aria-label="trier par popularité" >Popularité</button>
+                <div class="selector-pop">
+                    <button id="selecteur-trie" aria-label="trier par popularité" ></button>
                     <img src="./FishEye_Photos/svg/fleche-bas.svg" id="fleche" alt="" />
                 </div>
                 <div class="selector-open">
+                    <div class="container-title1">
+                        <button id="popularite-title1" aria-label="trier par Popularité" >Popularité</button>
+                    </div>
                     <div class="container-title2">
                         <button id="popularite-title2" aria-label="trier par date" >Date</button>
                     </div>
@@ -66,7 +69,7 @@
                     <img class="chevron-modal"  src="./FishEye_Photos/svg/chevron-left.svg" alt=""/>
                 </button>
                 <img class="photo-modal" src="" alt=""/>
-                <video controls="controls" class="video-modal"></video>  
+                <video controls="controls" class="video-modal "></video>  
                 <button id ="chevron-right" class="js-modalPhoto-focus" aria-label="Photo suivante">
                     <img class="chevron-modal"  src="./FishEye_Photos/svg/chevron-right.svg" alt=""/>
                 </button>

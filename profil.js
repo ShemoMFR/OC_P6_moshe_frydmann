@@ -5,7 +5,8 @@ const titlePage = document.getElementById('title-page');
 const tagsProfil = document.getElementById('tag-profil');
 const photoProfil = document.getElementById('photo-top-section');
 const bodySection = document.getElementsByClassName('body-section')[0];
-const selectorPopularite = document.getElementsByClassName('container-title1')[0];
+const selectorPopularite = document.getElementsByClassName('selector-pop')[0];
+const titreTrie = document.getElementById('selecteur-trie');
 const selectorOpen = document.getElementsByClassName('selector-open')[0];
 const fleche = document.getElementById('fleche');
 const selectorPop = document.getElementById('popularite-title1');
@@ -62,6 +63,10 @@ function nextVideo() {
         chevronLeft.style.opacity = "0.2";
     }
 };
+
+function updateGalery(mediasProfil) {
+
+}
 
 function createGalery(mediasProfil) {
 
@@ -180,14 +185,12 @@ function createGalery(mediasProfil) {
         });
     }
 
-    container.appendChild(newContainerInfos);
-    localStorage.setItem('nbrLikes', `${TLikes}`);  
-    TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
-});
+        container.appendChild(newContainerInfos);
+        localStorage.setItem('nbrLikes', `${TLikes}`);  
+        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
+    });
 
-    localStorage.removeItem('sortedBy');
-
-}
+};
 
 function setInfosProfil() {
 
@@ -226,74 +229,82 @@ function sortedMediasProfil() {
         mediasProfil = data.media.filter(
         media => media.photographerId == idProfil);
 
+        titreTrie.textContent = "Popularité";
+
         mediasProfil.sort( function(a, b) {
             a = a.likes;
             b = b.likes;
             return a > b ? -1 : a < b ? 1 : 0;
         });
 
-    selectorPop.addEventListener('click', function() {
-        if (isOpen) {
-            //window.open(`profil.html?id=${idProfil}`);
-            //window.location.reload();
+        selectorPop.addEventListener('click', function() {
+           
+            selectorOpen.style.display = 'none';
+            fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
+            titreTrie.textContent = "Popularité";
+            isOpen = false;
             cleanDisplay();
 
-        }
-    })
+            mediasProfil.sort( function(a, b) {
+                a = a.likes;
+                b = b.likes;
+                return a > b ? -1 : a < b ? 1 : 0;
+            });
 
-    selectorDate.addEventListener("click", function() {
+            createGalery(mediasProfil);
+            
+        })
 
-        localStorage.setItem('sortedBy', 'date');
-        //window.location.reload();
-        selectorOpen.style.display = 'none';
-        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
-        cleanDisplay();
-    })
+        selectorDate.addEventListener("click", function() {
 
-    selectorTitle.addEventListener("click", function() {
+            selectorOpen.style.display = 'none';
+            fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
+            titreTrie.textContent = "Date";
+            isOpen = false;
+            cleanDisplay();
 
-        localStorage.setItem('sortedBy', 'title');
-        //window.location.reload();
-        selectorOpen.style.display = 'none';
-        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
-        cleanDisplay();
-    })
+            mediasProfil.sort(function(a, b) {
+                a = new Date(a.date);
+                b = new Date(b.date);
+                return a > b ? -1 : a < b ? 1 : 0;
+            });
 
-    if (localStorage.getItem('sortedBy') == 'date') {
-        mediasProfil.sort(function(a, b) {
-            a = new Date(a.date);
-            b = new Date(b.date);
-            return a > b ? -1 : a < b ? 1 : 0;
-        });
+            createGalery(mediasProfil);
 
-        createGalery(mediasProfil);
-    }
+        })
 
-    else if (localStorage.getItem('sortedBy') == 'title') {
-        mediasProfil.sort( function(b, a) {
-            a = a.title;
-            b = b.title;
-            return a > b ? -1 : a < b ? 1 : 0;
-        });
+        selectorTitle.addEventListener("click", function() {
 
-        createGalery(mediasProfil);
-    }
+            selectorOpen.style.display = 'none';
+            fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
+            titreTrie.textContent = "Titre";
+            isOpen = false;
+            cleanDisplay();
 
-    else {createGalery(mediasProfil);};
+            mediasProfil.sort( function(b, a) {
+                a = a.title;
+                b = b.title;
+                return a > b ? -1 : a < b ? 1 : 0;
+            });
+            
+            createGalery(mediasProfil);
+
+        })
+
+    createGalery(mediasProfil);
 
     });
 
 };
 
-function nextMedia() {
-    currentIndex = currentIndex < mediasProfil.length - 1 ? ++currentIndex : currentIndex;
-       
+function managerIndex() {
     if (mediasProfil[currentIndex].image) {
         photoModal.style.display = "flex";
         photoModal.style.visibility = "visible";
         videoModal.style.display = "none";
         titleModal.textContent = mediasProfil[currentIndex].title;
         photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].image}`;
+
     } else {
         photoModal.style.display = "none";
         videoModal.style.display = "inline-block";
@@ -301,6 +312,12 @@ function nextMedia() {
         titleModal.textContent = mediasProfil[currentIndex].title;
         videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`;
     }  
+};
+
+function nextMedia() {
+    currentIndex = currentIndex < mediasProfil.length - 1 ? ++currentIndex : currentIndex;
+       
+    managerIndex();
 
     if (currentIndex !== 0) {
         chevronLeft.style.opacity = "1";
@@ -314,19 +331,7 @@ function nextMedia() {
 function prevMedia() {
     currentIndex = currentIndex > 0 ? --currentIndex : currentIndex;
 
-    if (mediasProfil[currentIndex].image) {
-        photoModal.style.display = "flex";
-        photoModal.style.visibility = "visible";
-        videoModal.style.display = "none";
-        photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].image}`;
-        titleModal.textContent = mediasProfil[currentIndex].title;
-    } else {
-        photoModal.style.display = "none";
-        videoModal.style.display = "inline-block";
-        videoModal.style.visibility = "visible";
-        titleModal.textContent = mediasProfil[currentIndex].title;
-        videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`; 
-    }  
+    managerIndex();
 
     if (currentIndex === 0) {
         chevronLeft.style.opacity = "0.2";
@@ -347,20 +352,17 @@ sortedMediasProfil();
 selectorPopularite.addEventListener('click', function() {
 
     if (isOpen) {
+        selectorOpen.style.display = 'none';
+        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
         isOpen = false;
     }
-    else {
-        isOpen = true;
-    }
 
-    if (isOpen) {
-        selectorOpen.style.display = 'inline-block';
-        fleche.src = "./FishEye_Photos/svg/fleche-haut.svg"
-    }
     else {
-        selectorOpen.style.display = 'none';
-        fleche.src = "./FishEye_Photos/svg/fleche-bas.svg"
-    }
+        selectorOpen.style.display = 'inline-block';
+        fleche.src = "./FishEye_Photos/svg/fleche-haut.svg";
+        isOpen = true;
+    };
+
 });
 
 exitModal.addEventListener('click', closeModalPhoto);

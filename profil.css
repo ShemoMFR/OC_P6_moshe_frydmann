@@ -253,12 +253,18 @@ a {
     cursor: pointer;
 }
 
+.selector-pop {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 15px;
+}
+
 .container-title1, .container-title2, .container-title3 {
     margin-left: 10px;
     margin-right: 10px;
 }
 
-#popularite-title1, #popularite-title2, #popularite-title3 {
+#selecteur-trie, #popularite-title1, #popularite-title2, #popularite-title3 {
     display: flex;
     align-items: center;
     height: 50px;
