@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profil.css">
-    <title id="title-page"></title>
+    <title id="title-page">Photographe</title>
 </head>
 <body>
 <div class="main-container" >
     <header>
-        <div class="logo-container">
-            <a href="index.html" aria-label="homepage link"><img src="./FishEye_Photos/logo/logo.png" aria-label="logo" tabindex="1" alt="FishEye home page"/></a>
+        <div class="logo-container" tabindex="1">
+            <a href="index.html" aria-label="homepage link"><img src="./FishEye_Photos/logo/logo.png" aria-label="logo"  alt="FishEye home page"/></a>
         </div>
     </header>
     <main class="main-section" aria-hidden='false'>
@@ -26,23 +26,23 @@
                 <button class="contactez-moi" tabindex="1">Contactez-moi</button>
             </div>
             <div class="card-photo">
-                <img id="photo-top-section"/>
+                <img id="photo-top-section" src="" alt="">
             </div>
         </section>
 
         <section class="recherche-selector-trie">
             <p class="titre-selector">Trier par</p>
-            <div class="popularite" aria-haspopup="listbox" aria-label='sélécteur tri images' role="selector">
+            <div class="popularite" aria-haspopup="listbox" aria-label='sélécteur tri images' role="listbox">
                 <div class="container-title1" >
                     <button id="popularite-title1" aria-label="trier par popularité" >Popularité</button>
-                    <img src="./FishEye_Photos/svg/fleche-bas.svg" id="fleche" />
+                    <img src="./FishEye_Photos/svg/fleche-bas.svg" id="fleche" alt="" />
                 </div>
                 <div class="selector-open">
                     <div class="container-title2">
-                        <button id="popularite-title2" aria-selected="false" role="listbox" aria-label="trier par date" >Date</button>
+                        <button id="popularite-title2" aria-label="trier par date" >Date</button>
                     </div>
                     <div class="container-title2">
-                        <button id="popularite-title3" aria-selected="false" role="listbox" aria-label="trier par titre" >Titre</button>
+                        <button id="popularite-title3" aria-label="trier par titre" >Titre</button>
                     </div>
                 </div>
             </div>
@@ -59,39 +59,39 @@
         </div>
     </main>
 
-    <div class="modal-bg" aria-labelledby="modal photo" role="dialog" aria-modal="false" aria-hidden="true">
+    <div class="modal-bg" aria-label="modal photo" role="dialog" aria-modal="false" aria-hidden="true">
         <div class='modal'>
             <div class="modal-centre">
                 <button id="chevron-left" class="js-modalPhoto-focus" aria-label="Photo précédente" >
-                    <img class="chevron-modal"  src="./FishEye_Photos/svg/chevron-left.svg" />
+                    <img class="chevron-modal"  src="./FishEye_Photos/svg/chevron-left.svg" alt=""/>
                 </button>
-                <img class="photo-modal" src=""/>
+                <img class="photo-modal" src="" alt=""/>
                 <video controls="controls" class="video-modal"></video>  
                 <button id ="chevron-right" class="js-modalPhoto-focus" aria-label="Photo suivante">
-                    <img class="chevron-modal"  src="./FishEye_Photos/svg/chevron-right.svg"/>
+                    <img class="chevron-modal"  src="./FishEye_Photos/svg/chevron-right.svg" alt=""/>
                 </button>
             </div>
             <button class="exit-modal-event js-modalPhoto-focus" aria-label="fermeture photo" >
-                <img class="exit-modal" src="./FishEye_Photos/svg/exit.svg" />
+                <img class="exit-modal" src="./FishEye_Photos/svg/exit.svg" alt="" />
             </button>
             <div class='title-modal title-media'></div>
         </div>
     </div>
 </div>
 
-<section class="form-container" aria-labelledby="formulaire contact photographe" aria-hidden="true" role="dialog" aria-modal="false">
-    <form class="form" type="submit">
+<section class="form-container" aria-label="formulaire contact photographe" aria-hidden="true" role="dialog" aria-modal="false">
+    <form class="form" >
         <h1 class='form-title'>Contactez-moi</h1> 
         <h2 id="photographe-name"></h2> 
         <label class="label-form " for="prénom" >Prénom</label>
         <input class="input-form js-modal-focus" type="text" id="prénom" />
-        <label class="label-form" for="nom" >Nom</label>
+        <label class="label-form" for="Nom" >Nom</label>
         <input class="input-form js-modal-focus" type="text" id="Nom" />
         <label class="label-form" for="Email" >Email</label>
         <input class="input-form js-modal-focus" type="text" id="Email" />
         <label class="label-form" for="textarea" >Votre message</label>
         <textarea class="textarea-form js-modal-focus" rows="5" id="textarea"></textarea>
-        <button class="btn-form js-modal-focus">Envoyer</button>
+        <button class="btn-form js-modal-focus" type="submit">Envoyer</button>
         <button class="exitBlanc js-modal-focus" aria-label="fermeture formulaire">
             <img  src="./FishEye_Photos/png/exitBlanc.png" alt="croix sortie formulaire" />
         </button>
