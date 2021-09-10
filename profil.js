@@ -37,7 +37,24 @@ let profilPage;
 let TLikes = 0;
 let currentIndex = 0;
 let i = 1;
-let isModalOpen = false;
+let isFormOpen = false;
+let isCarouOpen = false;
+
+function nextVideo() {
+    videoModal.style.display = "inline-block";
+    videoModal.style.visibility = "visible";
+    photoModal.style.display = "none";
+    modal.style.visibility = "visible"; 
+    videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
+    body.style.overflowY = "hidden";
+
+    titleModal.textContent = media.title;
+    currentIndex = mediasProfil.indexOf(media);
+
+    if (currentIndex === 0) {
+        chevronLeft.style.opacity = "0.2";
+    }
+};
 
 function createGalery(mediasProfil) {
     mediasProfil.map(media => {
@@ -89,10 +106,7 @@ function createGalery(mediasProfil) {
 
         newImg.addEventListener('click', function() {
 
-            const mainSection = document.getElementsByClassName('main-section')[0];
-
-            formulaireContact.ariaHidden = "true";
-            mainSection.ariaHidden = "true"; 
+            isCarouOpen = true;
             photoModal.style.display = "flex";
             photoModal.style.visibility = "visible";
             videoModal.style.display = "none";
@@ -246,36 +260,7 @@ function sortedMediasProfil() {
 
 };
 
-chevronLeft.addEventListener('click', function() {
-
-    currentIndex = currentIndex > 0 ? --currentIndex : currentIndex;
-
-    if (mediasProfil[currentIndex].image) {
-        photoModal.style.display = "flex";
-        photoModal.style.visibility = "visible";
-        videoModal.style.display = "none";
-        photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].image}`;
-        titleModal.textContent = mediasProfil[currentIndex].title;
-    } else {
-        photoModal.style.display = "none";
-        videoModal.style.display = "inline-block";
-        videoModal.style.visibility = "visible";
-        titleModal.textContent = mediasProfil[currentIndex].title;
-        videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`; 
-    }  
-
-    if (currentIndex === 0) {
-        chevronLeft.style.opacity = "0.2";
-    };
-
-    if (currentIndex < mediasProfil.length - 1 ) {
-        chevronRight.style.opacity = "1";
-    };
-  
-});
-
-chevronRight.addEventListener('click', function() {
-
+function nextMedia() {
     currentIndex = currentIndex < mediasProfil.length - 1 ? ++currentIndex : currentIndex;
        
     if (mediasProfil[currentIndex].image) {
@@ -299,7 +284,37 @@ chevronRight.addEventListener('click', function() {
     if (currentIndex === mediasProfil.length - 1 ) {
         chevronRight.style.opacity = "0.2";
     }
-});
+};
+
+function prevMedia() {
+    currentIndex = currentIndex > 0 ? --currentIndex : currentIndex;
+
+    if (mediasProfil[currentIndex].image) {
+        photoModal.style.display = "flex";
+        photoModal.style.visibility = "visible";
+        videoModal.style.display = "none";
+        photoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].image}`;
+        titleModal.textContent = mediasProfil[currentIndex].title;
+    } else {
+        photoModal.style.display = "none";
+        videoModal.style.display = "inline-block";
+        videoModal.style.visibility = "visible";
+        titleModal.textContent = mediasProfil[currentIndex].title;
+        videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`; 
+    }  
+
+    if (currentIndex === 0) {
+        chevronLeft.style.opacity = "0.2";
+    };
+
+    if (currentIndex < mediasProfil.length - 1 ) {
+        chevronRight.style.opacity = "1";
+    };
+}
+
+chevronLeft.addEventListener('click', prevMedia);
+chevronRight.addEventListener('click', nextMedia);
+
 
 setInfosProfil();
 sortedMediasProfil();
@@ -323,30 +338,30 @@ selectorPopularite.addEventListener('click', function() {
     }
 });
 
-exitModal.addEventListener('click', function() {
-    const mainSection = document.getElementsByClassName('main-section')[0];
+exitModal.addEventListener('click', closeModalPhoto);
 
-    formulaireContact.ariaHidden = "false";
-    mainSection.ariaHidden = "false";
+function closeModalPhoto() {
     modal.style.visibility = "hidden";
     body.style.overflowY = "visible";
     photoModal.style.visibility = "hidden";
-    videoModal.style.visibility = "hidden";s
-});
-
+    videoModal.style.visibility = "hidden";
+    isCarouOpen = false;
+    i = 0;
+}
 
 contact.addEventListener('click', () => {
     formulaireContact.style.visibility = "visible";
     photographeName.textContent = `${nomProfil.textContent}`; 
     formulaireContact.style.animation = 'modalopen 1.5s';
     document.getElementsByClassName("input-form")[0].focus();
-    isModalOpen = true;
+    isFormOpen = true;
 });
 
 exitBlanc.addEventListener('click', () => {
     formulaireContact.style.visibility = "hidden";
     formulaireContact.style.animation = '';
-    isModalOpen = false;
+    isFormOpen = false;
+    i = 0;
 });
 
 /**** Au submit réouvre la page du photographe car sinon si la page se rafraichit, on perd les queryParams *****/
@@ -354,21 +369,21 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     formulaireContact.style.visibility = "hidden";
     formulaireContact.style.animation = '';
-    isModalOpen = false;
+    isFormOpen = false;
  })
 
  window.addEventListener("keydown", function (e) {
      
-    if (isModalOpen) {
+    if (isFormOpen) {
 
         if (e.key !== "Enter") {
             e.preventDefault();
         };
 
-        if(e.key === "Escape" || e.key === "Esc") {
+        if (e.key === "Escape" || e.key === "Esc") {
             formulaireContact.style.visibility = "hidden";
             formulaireContact.style.animation = '';
-            isModalOpen = false;
+            isFormOpen = false;
         };
 
         if (e.key === "Tab") {
@@ -385,7 +400,41 @@ form.addEventListener('submit', (e) => {
         };
     }
 
+    else if (isCarouOpen) {
 
+        if (e.key !== "Enter") {
+            e.preventDefault();
+        };
+
+        if (e.key === "ArrowLeft") {
+            prevMedia();
+        };
+
+        if (e.key === "ArrowRight") {
+            nextMedia();
+        };
+
+        if (e.key === "Escape" || e.key === "Esc") {
+            closeModalPhoto();
+            modal.style.visibility = "hidden";
+        };
+
+        if (e.key === "Tab") {
+
+            const modalPhotoFocus = document.getElementsByClassName("js-modalPhoto-focus");
+
+            if (i >= modalPhotoFocus.length) {
+                i = 0;
+            }
+
+            modalPhotoFocus[i].focus();
+
+            console.log(modalPhotoFocus[i])
+
+            ++i;
+
+        };
+    }
 
  });
 
