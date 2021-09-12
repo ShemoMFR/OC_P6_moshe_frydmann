@@ -1,3 +1,4 @@
+
 const nomProfil = document.getElementById("nom-profil");
 const villeProfil = document.getElementById("ville-profil");
 const citaProfil = document.getElementById("citation-profil");
@@ -442,6 +443,7 @@ form.addEventListener('submit', (e) => {
             }
 
             modalPhotoFocus[i].focus();
+            console.log(modalPhotoFocus[i]);
 
             ++i;
 
