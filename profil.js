@@ -14,15 +14,12 @@ const selectorDate = document.getElementById('popularite-title2');
 const selectorTitle = document.getElementById('popularite-title3');
 const urlParams = new URLSearchParams(window.location.search);
 const idProfil = urlParams.get("id");
-let titleMedia = document.getElementsByClassName('title-media');
-let likesMedia = document.getElementsByClassName('likes-media');
 let isOpen = false;
 let tjm = document.getElementsByClassName('tjm-profil')[0];
 let TotalLikes = document.getElementsByClassName('total-likes')[0];
 const modal = document.getElementsByClassName('modal-bg')[0]
 const photoModal = document.getElementsByClassName('photo-modal')[0];
 const videoModal = document.getElementsByClassName('video-modal')[0];
-const sourceModal = document.getElementById('source-modal');
 const body = document.getElementsByTagName('body')[0];
 const exitModal = document.getElementsByClassName('exit-modal-event')[0];
 const chevronLeft = document.getElementById('chevron-left');
@@ -46,29 +43,18 @@ function cleanDisplay() {
     while (bodySection.firstChild) {
         bodySection.removeChild(bodySection.lastChild);
     }
-};
+}
 
-function nextVideo() {
-    videoModal.style.display = "inline-block";
-    videoModal.style.visibility = "visible";
-    photoModal.style.display = "none";
-    modal.style.visibility = "visible"; 
-    videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${media.video}`;
-    body.style.overflowY = "hidden";
-
-    titleModal.textContent = media.title;
-    currentIndex = mediasProfil.indexOf(media);
-
-    if (currentIndex === 0) {
-        chevronLeft.style.opacity = "0.2";
-    }
-};
-
-function updateGalery(mediasProfil) {
-
+function setInfosTrie(trie) {
+    selectorOpen.style.display = 'none';
+    fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
+    titreTrie.textContent = `${trie}`;
+    isOpen = false;
 }
 
 function createGalery(mediasProfil) {
+
+    TLikes = 0;
 
     mediasProfil.map(media => {
     TLikes += parseInt(media.likes);
@@ -108,7 +94,7 @@ function createGalery(mediasProfil) {
         const likes = parseInt(newLikes.textContent) + 1;
         newLikes.textContent = likes;
         localStorage.setItem('nbrLikes', parseInt(`${localStorage.getItem('nbrLikes')}`) + 1);  
-        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;                
+        TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
     });
 
     if (media.image) {
@@ -142,14 +128,14 @@ function createGalery(mediasProfil) {
             }
             else {
                 chevronLeft.style.opacity = "1";
-            };
+            }
 
             if (currentIndex === mediasProfil.length - 1) {
                 chevronRight.style.opacity = "0.2";
             }
             else {
                 chevronRight.style.opacity = "1";
-            };
+            }
             
         });
     }
@@ -186,11 +172,12 @@ function createGalery(mediasProfil) {
     }
 
         container.appendChild(newContainerInfos);
+
         localStorage.setItem('nbrLikes', `${TLikes}`);  
         TotalLikes.textContent = `${localStorage.getItem('nbrLikes')}`;      
     });
 
-};
+}
 
 function setInfosProfil() {
 
@@ -219,7 +206,7 @@ function setInfosProfil() {
         photoProfil.src = "./FishEye_Photos/Photos/Photographers/" + profilPage.portrait;
         photoProfil.alt = `${profilPage.name}`;
     });
-};
+}
 
 function sortedMediasProfil() {
 
@@ -239,10 +226,7 @@ function sortedMediasProfil() {
 
         selectorPop.addEventListener('click', function() {
            
-            selectorOpen.style.display = 'none';
-            fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
-            titreTrie.textContent = "Popularité";
-            isOpen = false;
+            setInfosTrie("Popularité");
             cleanDisplay();
 
             mediasProfil.sort( function(a, b) {
@@ -255,12 +239,10 @@ function sortedMediasProfil() {
             
         })
 
+
         selectorDate.addEventListener("click", function() {
 
-            selectorOpen.style.display = 'none';
-            fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
-            titreTrie.textContent = "Date";
-            isOpen = false;
+            setInfosTrie("Date");
             cleanDisplay();
 
             mediasProfil.sort(function(a, b) {
@@ -275,10 +257,7 @@ function sortedMediasProfil() {
 
         selectorTitle.addEventListener("click", function() {
 
-            selectorOpen.style.display = 'none';
-            fleche.src = "./FishEye_Photos/svg/fleche-bas.svg";
-            titreTrie.textContent = "Titre";
-            isOpen = false;
+            setInfosTrie("Titre");
             cleanDisplay();
 
             mediasProfil.sort( function(b, a) {
@@ -295,9 +274,10 @@ function sortedMediasProfil() {
 
     });
 
-};
+}
 
 function managerIndex() {
+
     if (mediasProfil[currentIndex].image) {
         photoModal.style.display = "flex";
         photoModal.style.visibility = "visible";
@@ -312,7 +292,7 @@ function managerIndex() {
         titleModal.textContent = mediasProfil[currentIndex].title;
         videoModal.src = `./FishEye_Photos/Photos/${idProfil}/${mediasProfil[currentIndex].video}`;
     }  
-};
+}
 
 function nextMedia() {
     currentIndex = currentIndex < mediasProfil.length - 1 ? ++currentIndex : currentIndex;
@@ -321,12 +301,12 @@ function nextMedia() {
 
     if (currentIndex !== 0) {
         chevronLeft.style.opacity = "1";
-    };
+    }
 
     if (currentIndex === mediasProfil.length - 1 ) {
         chevronRight.style.opacity = "0.2";
     }
-};
+}
 
 function prevMedia() {
     currentIndex = currentIndex > 0 ? --currentIndex : currentIndex;
@@ -335,11 +315,11 @@ function prevMedia() {
 
     if (currentIndex === 0) {
         chevronLeft.style.opacity = "0.2";
-    };
+    }
 
     if (currentIndex < mediasProfil.length - 1 ) {
         chevronRight.style.opacity = "1";
-    };
+    }
 }
 
 chevronLeft.addEventListener('click', prevMedia);
@@ -361,7 +341,7 @@ selectorPopularite.addEventListener('click', function() {
         selectorOpen.style.display = 'inline-block';
         fleche.src = "./FishEye_Photos/svg/fleche-haut.svg";
         isOpen = true;
-    };
+    }
 
 });
 
@@ -405,15 +385,15 @@ form.addEventListener('submit', (e) => {
 
         if (e.key !== "Enter") {
             e.preventDefault();
-        };
+        }
 
-        if (e.key === "Escape" || e.key === "Esc") {
+        else if (e.key === "Escape" || e.key === "Esc") {
             formulaireContact.style.visibility = "hidden";
             formulaireContact.style.animation = '';
             isFormOpen = false;
-        };
+        }
 
-        if (e.key === "Tab") {
+        else if (e.key === "Tab") {
 
             const modalFocus = document.getElementsByClassName("js-modal-focus");
 
@@ -424,27 +404,27 @@ form.addEventListener('submit', (e) => {
             modalFocus[i].focus();
 
             ++i;
-        };
+        }
     }
 
     else if (isCarouOpen) {
 
         if (e.key !== "Enter") {
             e.preventDefault();
-        };
+        }
 
         if (e.key === "ArrowLeft") {
             prevMedia();
-        };
+        }
 
         if (e.key === "ArrowRight") {
             nextMedia();
-        };
+        }
 
         if (e.key === "Escape" || e.key === "Esc") {
             closeModalPhoto();
             modal.style.visibility = "hidden";
-        };
+        }
 
         if (e.key === "Tab") {
 
@@ -452,7 +432,7 @@ form.addEventListener('submit', (e) => {
 
             if (i >= modalPhotoFocus.length) {
                 i = 0;
-            };
+            }
 
             if (i == 2) {
                 document.getElementsByClassName("exit-modal")[0].style.border = "1px solid red";
@@ -465,7 +445,7 @@ form.addEventListener('submit', (e) => {
 
             ++i;
 
-        };
+        }
     }
 
  });

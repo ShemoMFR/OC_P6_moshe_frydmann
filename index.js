@@ -10,7 +10,7 @@ function cleanDisplay() {
     while (mainSection.firstChild) {
         mainSection.removeChild(mainSection.lastChild);
     }
-};
+}
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 1) {
@@ -115,13 +115,13 @@ function getData() {
 
                 if (photographe.tags[i] === localStorage.getItem('tag')) {
                     displayProfils(photographe);
-                };
+                }
             }
         }
 
     }));
 
-};
+}
 
 getData();
 
