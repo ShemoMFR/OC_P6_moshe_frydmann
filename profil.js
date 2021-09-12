@@ -443,10 +443,8 @@ form.addEventListener('submit', (e) => {
             }
 
             modalPhotoFocus[i].focus();
-            console.log(modalPhotoFocus[i]);
 
             ++i;
-
         }
     }
 
