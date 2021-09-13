@@ -274,7 +274,6 @@ function sortedMediasProfil() {
     createGalery(mediasProfil);
 
     });
-
 }
 
 function managerIndex() {
@@ -363,6 +362,8 @@ contact.addEventListener('click', () => {
     formulaireContact.style.animation = 'modalopen 1.5s';
     document.getElementsByClassName("input-form")[0].focus();
     isFormOpen = true;
+
+    console.log(isCarouOpen)
 });
 
 exitBlanc.addEventListener('click', () => {
@@ -388,13 +389,13 @@ form.addEventListener('submit', (e) => {
             e.preventDefault();
         }
 
-        else if (e.key === "Escape" || e.key === "Esc") {
+        if (e.key === "Escape" || e.key === "Esc") {
             formulaireContact.style.visibility = "hidden";
             formulaireContact.style.animation = '';
             isFormOpen = false;
         }
 
-        else if (e.key === "Tab") {
+        if (e.key === "Tab") {
 
             const modalFocus = document.getElementsByClassName("js-modal-focus");
 
